@@ -1,0 +1,29 @@
+(function () {
+    'use strict';
+
+    angular
+	.module('PACTT.authentication.controllers')
+	.controller('LoginController', LoginController);
+
+    LoginController.$inject = ['$location', '$scope', 'Authentication'];
+
+    
+    function LoginController($location, $scope, Authentication) {
+	var vm = this;
+
+	vm.login = login;
+
+	activate();
+
+	// initiation of the controller
+	function activate() {
+	    if (Authentication.isAuthenticated()) {
+		$location.url('/');
+	    }
+	}
+
+	function login() {
+	    Authentication.login(vm.email, vm.password);
+	}
+    }
+})
