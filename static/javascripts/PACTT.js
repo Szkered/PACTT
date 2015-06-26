@@ -5,7 +5,10 @@
 	.module('PACTT', [
 	    'PACTT.config',
 	    'PACTT.routes',
-	    'PACTT.authentication'
+	    'PACTT.utils',
+	    'PACTT.authentication',
+	    'PACTT.layout',
+	    'PACTT.posts'
 	]);
 
     angular

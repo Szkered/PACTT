@@ -17,6 +17,7 @@
 
 	// initiation of the controller
 	function activate() {
+	    console.log("[INFO] activate LoginController");
 	    if (Authentication.isAuthenticated()) {
 		$location.url('/');
 	    }
@@ -26,4 +27,4 @@
 	    Authentication.login(vm.email, vm.password);
 	}
     }
-})
+})();
