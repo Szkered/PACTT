@@ -19,6 +19,8 @@
 	
 
 	function all() {
+	    console.log("[INFO] in PostsService: all()");
+	    console.log($http.get('/api/v1/posts/'));
 	    return $http.get('/api/v1/posts/');
 	}
 
@@ -29,7 +31,7 @@
 	}
 
 	function get(username) {
-	    return $http.get('/api/v1/accounts' + username + '/posts/');
+	    return $http.get('/api/v1/accounts/' + username + '/posts/');
 	}
     }
 })();

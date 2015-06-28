@@ -8,7 +8,8 @@
 	    'PACTT.utils',
 	    'PACTT.authentication',
 	    'PACTT.layout',
-	    'PACTT.posts'
+	    'PACTT.posts',
+	    'PACTT.profiles'
 	]);
 
     angular

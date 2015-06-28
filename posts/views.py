@@ -8,7 +8,7 @@ from posts.serializers import PostSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.order_by('created_at')
-    serializers_class = PostSerializer
+    serializer_class = PostSerializer
 
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
@@ -16,9 +16,9 @@ class PostViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(), IsAuthorOfPost(),)
 
     def perform_create(self, serializer):
-        instance = serializers.save(author=self.request.user)
+        instance = serializer.save(author=self.request.user)
         
-        return super(PostViewSet, self).perform_create(serializers)
+        return super(PostViewSet, self).perform_create(serializer)
 
     
 class AccountPostsViewSet(viewsets.ViewSet):

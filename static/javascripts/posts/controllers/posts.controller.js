@@ -17,6 +17,7 @@
 
 
 	function activate() {
+	    console.log("[INFO] activate PostsController");
 	    $scope.$watchCollection(function () { return $scope.posts; }, render);
 	    $scope.$watch(function () { return $(window).width(); }, render);
 	}

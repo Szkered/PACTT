@@ -42,17 +42,21 @@ class Account(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
+    # override default .objects
     objects = AccountManager()
 
+    # used in authentication
     USERNAME_FIELD = 'email'
     # USERNAME_FIELD = 'sid'
+    
     REQUIRED_FIELDS = ['username']
 
     def __unicode__(self):
         return self.email
 
     def get_full_name(self):
-        return ' '.join([self.first_name, self.last_name])
+        return ','.join([self.last_name, self.first_name])
 
     def get_short_name(self):
         return self.first_name

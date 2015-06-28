@@ -17,6 +17,7 @@
 
 
 	function activate() {
+	    console.log("[INFO] activate registerController");
 	    if (Authentication.isAuthenticated()) {
 		$location.url('/');
 	    }
