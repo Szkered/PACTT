@@ -21,22 +21,22 @@
 
 	function activate() {
 	    var authenticatedAccount = Authentication.getAuthenticatedAccount();
-	    var username = $routeParams.username.substr(1);
+	    var sid = $routeParams.sid.substr(1);
 
 	    if (!authenticatedAccount) {
 		$location.url('/');
 		Snackbar.error('You are not logged in!');
 	    } else {
-		console.log(authenticatedAccount.username);
-		console.log($routeParams.username);
-		console.log($routeParams.username.substr(1));
-		if (authenticatedAccount.username !== username) {
+		console.log(authenticatedAccount.sid);
+		console.log($routeParams.sid);
+		console.log($routeParams.sid.substr(1));
+		if (authenticatedAccount.sid !== sid) {
 		    $location.url('/');
 		    Snackbar.error('You are not authorized to view this page!');
 		}
 	    }
 
-	    Profile.get(username).then(profileSucessFn, profileErrorFn);
+	    Profile.get(sid).then(profileSucessFn, profileErrorFn);
 
 	    
 	    function profileSucessFn(data, status, headers, config) {
@@ -50,7 +50,7 @@
 	}
 
 	function destory() {
-	    Profile.destory(vm.profile.username).then(profileSucessFn, profileErrorFn);
+	    Profile.destory(vm.profile.sid).then(profileSucessFn, profileErrorFn);
 	    
 	    function profileSucessFn(data, status, headers, config) {
 		Authentication.unauthenticate();

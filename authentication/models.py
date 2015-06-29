@@ -3,15 +3,15 @@ from django.db import models
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, email, password=None, **kwargs):
-        if not email:
-            raise ValueError('Users must have a valid email address.')
+    def create_user(self, sid, password=None, **kwargs):
+        if not sid:
+            raise ValueError('Users must have a sid.')
 
-        if not kwargs.get('username'):
-            raise ValueError('Users must have a valid username.')
+        if not kwargs.get('email'):
+            raise ValueError('Users must have an email.')
 
         account = self.model(
-            email=self.normalize_email(email), username=kwargs.get('username')
+            sid=sid, email=self.normalize_email(kwargs.get('email'))
         )
 
         account.set_password(password)
@@ -19,8 +19,8 @@ class AccountManager(BaseUserManager):
         
         return account
 
-    def create_superuser(self, email, password, **kwargs):
-        account = self.create_user(email, password, **kwargs)
+    def create_superuser(self, sid, password, **kwargs):
+        account = self.create_user(sid, password, **kwargs)
 
         account.is_admin = True
         account.save()
@@ -29,28 +29,23 @@ class AccountManager(BaseUserManager):
     
 
 class Account(AbstractBaseUser):
-    # sid = models.CharField(max_length=7, unique=True)
+    sid = models.CharField(max_length=7, unique=True)
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=40, unique=True)
 
     first_name = models.CharField(max_length=40, blank=True)
     last_name = models.CharField(max_length=40, blank=True)
-    tagline = models.CharField(max_length=140, blank=True)
+    lob = models.CharField(max_length=40, blank=True, default="CIB")
 
     is_admin = models.BooleanField(default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
-    # override default .objects
     objects = AccountManager()
 
-    # used in authentication
-    USERNAME_FIELD = 'email'
-    # USERNAME_FIELD = 'sid'
+    USERNAME_FIELD = 'sid'
     
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['email']
 
     def __unicode__(self):
         return self.email

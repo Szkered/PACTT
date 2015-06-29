@@ -1,8 +1,8 @@
 <div class="profile" ng-show="vm.profile">
   <div class="jumbotron profile__header">
-    <h1 class="profile__username">+{{ vm.profile.username }}</h1>
-    <p class="profile__tagline">{{ vm.profile.tagline }}</p>
-    <a href="/+{{ vm.profile.username }}/settings">Settings</a>
+    <h1 class="profile__sid">+{{ vm.profile.sid }}</h1>
+    <p class="profile__lob">{{ vm.profile.lob }}</p>
+    <a href="/+{{ vm.profile.sid }}/settings">Settings</a>
   </div>
 
   <posts posts="vm.posts"><posts>

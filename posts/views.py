@@ -25,8 +25,8 @@ class AccountPostsViewSet(viewsets.ViewSet):
     queryset = Post.objects.select_related('author').all()
     serializer_class = PostSerializer
 
-    def list(self, request, account_username=None):
-        queryset = self.queryset.filter(author__username=account_username)
+    def list(self, request, account_sid=None):
+        queryset = self.queryset.filter(author__sid=account_sid)
         serializer = self.serializer_class(queryset, many=True)
 
         return Response(serializer.data)

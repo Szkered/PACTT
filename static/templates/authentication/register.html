@@ -4,6 +4,12 @@
 
     <div class="well">
       <form role="form" ng-submit="vm.register()">
+
+	<div class="form-group">
+	  <label for="register__sid">SID</label>
+	  <input class="form-control" type="text" id="register__sid" ng-model="vm.sid"
+		 placeholder="ex. A123456"/>
+	</div>
 	
 	<div class="form-group">
 	  <label for="register__email">Email</label>
@@ -11,12 +17,6 @@
 		 placeholder="ex. jon@jpmchase.com"/>
 	</div>
 
-	<div class="form-group">
-	  <label for="register__username">Username</label>
-	  <input class="form-control" type="text" id="register__username" ng-model="vm.username"
-		 placeholder="ex. jon"/>
-	</div>
-	
 	<div class="form-group">
 	  <label for="register__password">Password</label>
 	  <input class="form-control" type="password" id="register__password" ng-model="vm.password"

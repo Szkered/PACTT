@@ -18,10 +18,10 @@
 
 
 	function activate() {
-	    var username = $routeParams.username.substr(1);
+	    var sid = $routeParams.sid.substr(1);
 
-	    Profile.get(username).then(profileSucessFn, profileErrorFn);
-	    Posts.get(username).then(postsSuccessFn, postsSuccessFn);
+	    Profile.get(sid).then(profileSucessFn, profileErrorFn);
+	    Posts.get(sid).then(postsSuccessFn, postsSuccessFn);
 
 	    function profileSucessFn(data, status, headers, config) {
 		vm.profile = data.data;

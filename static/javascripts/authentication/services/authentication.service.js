@@ -21,15 +21,15 @@
 
 	return Authentication;
 
-	function register(email, password, username) {
+	function register(sid, password, email) {
 	    return $http.post('/api/v1/accounts/', {
-		username: username,
+		sid: sid,
 		password: password,
 		email: email
 	    }).then(registerSuccessFn, registerErrorFn);
 
 	    function registerSuccessFn(data, status, headers, config) {
-		Authentication.login(email, password);
+		Authentication.login(sid, password);
 	    }
 
 	    function registerErrorFn(data, status, headers, config) {
@@ -37,9 +37,9 @@
 	    }
 	}
 
-	function login(email, password) {
+	function login(sid, password) {
 	    return $http.post('/api/v1/auth/login/', {
-		email: email, password: password
+		sid: sid, password: password
 	    }).then(loginSuccessFn, loginErrorFn);
 
 	    function loginSuccessFn(data, status, headers, config) {

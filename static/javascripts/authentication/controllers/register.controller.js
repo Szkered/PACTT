@@ -24,7 +24,7 @@
 	}
 
 	function register() {
-	    Authentication.register(vm.email, vm.password, vm.username);
+	    Authentication.register(vm.sid, vm.password, vm.username);
 	}
     }
 })();

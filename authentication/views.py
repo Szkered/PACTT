@@ -11,7 +11,7 @@ from django.contrib.auth import authenticate, login, logout
                                 
 
 class AccountViewSet(viewsets.ModelViewSet):
-    lookup_field = 'username'
+    lookup_field = 'sid'
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
 
@@ -42,10 +42,10 @@ class LoginView(views.APIView):
     def post(self, request, format=None):
         data = json.loads(request.body)
 
-        email = data.get('email', None)
+        sid = data.get('sid', None)
         password = data.get('password', None)
 
-        account = authenticate(email=email, password=password)
+        account = authenticate(sid=sid, password=password)
 
         if account is not None:
             if account.is_active:
@@ -62,7 +62,7 @@ class LoginView(views.APIView):
         else:
             return Response({
                 'status': 'Unauthorized',
-                'message': 'Username/password combination invalid.'
+                'message': 'SID/password combination invalid.'
             }, status=status.HTTP_401_UNAUTHORIZED)
         
 

@@ -30,8 +30,8 @@
 	    });
 	}
 
-	function get(username) {
-	    return $http.get('/api/v1/accounts/' + username + '/posts/');
+	function get(sid) {
+	    return $http.get('/api/v1/accounts/' + sid + '/posts/');
 	}
     }
 })();
