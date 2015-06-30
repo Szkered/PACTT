@@ -18,7 +18,7 @@
 
 
 	function activate() {
-	    var sid = $routeParams.sid.substr(1);
+	    var sid = $routeParams.sid;
 
 	    Profile.get(sid).then(profileSucessFn, profileErrorFn);
 	    Posts.get(sid).then(postsSuccessFn, postsSuccessFn);

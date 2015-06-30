@@ -22,12 +22,12 @@
 	    return $http.delete('/api/v1/accounts/' + profile.id + '/');
 	}
 
-	function get(username) {
-	    return $http.get('/api/v1/accounts/' + username + '/');
+	function get(sid) {
+	    return $http.get('/api/v1/accounts/' + sid + '/');
 	}
 
 	function update(profile) {
-	    return $http.put('/api/v1/accounts/' + profile.username + '/', profile);
+	    return $http.put('/api/v1/accounts/' + profile.sid + '/', profile);
 	}
     }
 })();

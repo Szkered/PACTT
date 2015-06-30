@@ -21,14 +21,18 @@
 	    controller: 'LoginController',
 	    controllerAs: 'vm',
 	    templateUrl: '/static/templates/authentication/login.html'
-	}).when('/+:username', {
+	}).when('/:sid', {
 	    controller: 'ProfileController',
 	    controllerAs: 'vm',
 	    templateUrl: '/static/templates/profiles/profile.html'
-	}).when('/+:username/settings', {
+	}).when('/:sid/settings', {
 	    controller: 'ProfileSettingsController',
 	    controllerAs: 'vm',
 	    templateUrl: '/static/templates/profiles/settings.html'
+	}).when('/events/:event_id', {
+	    controller: 'PlannerController',
+	    controllerAs: 'vm',
+	    templateUrl: '/static/templates/planner/planner.html'
 	}).otherwise('/');
     }
 })();

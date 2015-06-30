@@ -16,11 +16,12 @@ class AccountSerializer(serializers.ModelSerializer):
                   'confirm_password',)
         read_only_field = ('email', 'sid', 'created_at', 'updated_at')
 
+        
         def create(self, validated_data):
             return Account.objects.create(**validated_data)
 
         def updated(self, instance, validated_data):
-            instance.sid = validated_data.get('username', instance.username)
+            instance.email = validated_data.get('email', instance.email)
             instance.lob = validated_data.get('lob', instance.tagline)
 
             instance.save()

@@ -21,11 +21,14 @@
 
 	return Authentication;
 
-	function register(sid, password, email) {
+	function register(sid, password, email, first_name, last_name, lob) {
 	    return $http.post('/api/v1/accounts/', {
 		sid: sid,
 		password: password,
-		email: email
+		email: email,
+		first_name: first_name,
+		last_name: last_name,
+		lob: lob
 	    }).then(registerSuccessFn, registerErrorFn);
 
 	    function registerSuccessFn(data, status, headers, config) {

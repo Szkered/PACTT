@@ -5,10 +5,10 @@
 	.module('PACTT.posts.controllers')
 	.controller('PostsController', PostsController);
 
-    PostsController.$inject = ['$scope'];
+    PostsController.$inject = ['$scope', 'Columbus'];
 
 
-    function PostsController($scope) {
+    function PostsController($scope, Columbus) {
 	var vm = this;
 
 	vm.columns = [];
@@ -18,58 +18,66 @@
 
 	function activate() {
 	    console.log("[INFO] activate PostsController");
-	    $scope.$watchCollection(function () { return $scope.posts; }, render);
-	    $scope.$watch(function () { return $(window).width(); }, render);
+	    $scope.$watchCollection(function () { return $scope.posts; },
+	    			    function (current, original) {
+	    				vm.columns = Columbus.render(current, original)
+	    			    });
+	    $scope.$watch(function () { return $(window).width(); },
+	    		  function (current, original) {
+	    		      vm.columns = Columbus.render(current, original)
+	    		  });
 	}
-
-	function calculateNumberOfColumns() {
-	    var width = $(window).width();
-
-	    if (width >= 1200) {
-		return 4;
-	    } else if (width >= 992) {
-		return 3;
-	    } else if (width >= 768) {
-		return 2;
-	    } else {
-		return 1;
-	    }
-	}
-
-	function approximateShortestColumn() {
-	    var scores = vm.columns.map(columnMapFn);
-
-	    return scores.indexOf(Math.min.apply(this, scores));
+	    // $scope.$watchCollection(function () { return $scope.posts; }, render);
+	    // $scope.$watch(function () { return $(window).width(); }, render);
 
 
-	    function columnMapFn(column) {
-		var lengths = column.map(function (element) {
-		    return element.content.length;
-		});
+	// function calculateNumberOfColumns() {
+	//     var width = $(window).width();
 
-		return lengths.reduce(sum, 0) * column.length;
-	    }
+	//     if (width >= 1200) {
+	// 	return 4;
+	//     } else if (width >= 992) {
+	// 	return 3;
+	//     } else if (width >= 768) {
+	// 	return 2;
+	//     } else {
+	// 	return 1;
+	//     }
+	// }
 
-	    function sum(m, n) {
-		return m + n;
-	    }
-	}
+	// function approximateShortestColumn() {
+	//     var scores = vm.columns.map(columnMapFn);
 
-	function render(current, original) {
-	    if (current !== original) {
-		vm.columns = [];
+	//     return scores.indexOf(Math.min.apply(this, scores));
 
-		for (var i = 0; i < calculateNumberOfColumns(); ++i) {
-		    vm.columns.push([]);
-		}
 
-		for(var i = 0; i < current.length; ++i) {
-		    var column = approximateShortestColumn();
+	//     function columnMapFn(column) {
+	// 	var lengths = column.map(function (element) {
+	// 	    return element.content.length;
+	// 	});
 
-		    vm.columns[column].push(current[i]);
-		}
-	    }
-	}
-	
+	// 	return lengths.reduce(sum, 0) * column.length;
+	//     }
+
+	//     function sum(m, n) {
+	// 	return m + n;
+	//     }
+	// }
+
+	// function render(current, original) {
+	//     if (current !== original) {
+	// 	vm.columns = [];
+
+	// 	for (var i = 0; i < calculateNumberOfColumns(); ++i) {
+	// 	    vm.columns.push([]);
+	// 	}
+
+	// 	for(var i = 0; i < current.length; ++i) {
+	// 	    var column = approximateShortestColumn();
+
+	// 	    vm.columns[column].push(current[i]);
+	// 	}
+	//     }
+	// }
     }
 })();

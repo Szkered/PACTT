@@ -15,7 +15,7 @@
 
 	activate();
 
-	// initiation of the controller
+
 	function activate() {
 	    console.log("[INFO] activate LoginController");
 	    if (Authentication.isAuthenticated()) {

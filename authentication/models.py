@@ -11,7 +11,11 @@ class AccountManager(BaseUserManager):
             raise ValueError('Users must have an email.')
 
         account = self.model(
-            sid=sid, email=self.normalize_email(kwargs.get('email'))
+            sid=sid,
+            email=self.normalize_email(kwargs.get('email')),
+            first_name=kwargs.get('first_name'),
+            last_name=kwargs.get('last_name'),
+            lob=kwargs.get('lob')
         )
 
         account.set_password(password)
@@ -34,7 +38,11 @@ class Account(AbstractBaseUser):
 
     first_name = models.CharField(max_length=40, blank=True)
     last_name = models.CharField(max_length=40, blank=True)
-    lob = models.CharField(max_length=40, blank=True, default="CIB")
+    LOB_TYPE = (
+        ('G', 'GTRM'),
+        ('C', 'CIB TRM')
+    )
+    lob = models.CharField(max_length=1, choices=LOB_TYPE, blank=True)
 
     is_admin = models.BooleanField(default=False)
 
@@ -51,7 +59,7 @@ class Account(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        return ','.join([self.last_name, self.first_name])
+        return ', '.join([self.last_name, self.first_name])
 
     def get_short_name(self):
         return self.first_name

@@ -1,0 +1,10 @@
+<div class="event" ng-show="vm.event">
+  
+  <div class="jumbotron event__header">
+    <h1 class="event__head">{{ vm.event.datacenter }}</h1>
+    <p class="event__content">{{ vm.event.date }} - {{ vm.event.description}}</p>
+  </div>
+
+  <test-phases test-phases="vm.test_phases"></test-phases>
+  
+</div>

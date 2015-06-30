@@ -21,7 +21,8 @@
 
 	function activate() {
 	    var authenticatedAccount = Authentication.getAuthenticatedAccount();
-	    var sid = $routeParams.sid.substr(1);
+	    // var sid = $routeParams.sid.substr(1);
+	    var sid = $routeParams.sid;
 
 	    if (!authenticatedAccount) {
 		$location.url('/');

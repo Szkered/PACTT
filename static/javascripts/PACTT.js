@@ -9,7 +9,8 @@
 	    'PACTT.authentication',
 	    'PACTT.layout',
 	    'PACTT.posts',
-	    'PACTT.profiles'
+	    'PACTT.profiles',
+	    'PACTT.planner'
 	]);
 
     angular

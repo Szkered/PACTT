@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'compressor',
     'authentication',
     'posts',
+    'planner',
 )
 
 MIDDLEWARE_CLASSES = (
