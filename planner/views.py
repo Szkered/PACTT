@@ -6,12 +6,13 @@ from planner.serializers import *
 
 
 class EventViewSet(viewsets.ModelViewSet):
+    lookup_field = 'pk'
     queryset = Event.objects.order_by('date')
     serializer_class = EventSerializer
 
     # TODO: get_permissions
 
-class TestPhaseViewSet(viewsets.ViewSet):
+class TestPhaseViewSet(viewsets.ModelViewSet):
     queryset = TestPhase.objects.order_by('startTime')
     serializer_class = TestPhaseSerializer
 

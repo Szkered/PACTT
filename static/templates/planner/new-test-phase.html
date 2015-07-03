@@ -1,0 +1,50 @@
+<form role="form" ng-submit="vm.submit()">
+  <h1>New Test Phase</h1>
+  
+  <div class="form-group">
+    <label for="test_phase__description">Description</label>
+    <textarea class="form-control"
+	      id="test_phase__description"
+	      rows="1"
+	      placeholder="eg. Window A"
+	      ng-model="vm.description">
+    </textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="test_phase__start_time">Start Time</label>
+    <input class="form-control" type="text" id="test_phase__start_time" ng-model="vm.startTime"
+  	   placeholder="eg. 6:30"/>
+  </div>
+  
+  <div class="form-group">
+    <label for="test_phase__end_time">End Time</label>
+    <input class="form-control" type="text" id="test_phase__end_time" ng-model="vm.endTime"
+  	   placeholder="eg. 7:30"/>
+  </div>
+  
+  <!-- <div class="form-group"> -->
+  <!--   <label for="test_phase__start_time">Start Time</label> -->
+  <!--   <timepicker ng-model="vm.startTime" id="test_phase__start_time"></timepicker> -->
+  <!-- </div> -->
+  
+  <!-- <div class="form-group"> -->
+  <!--   <label for="test_phase__end_time">End Time</label> -->
+  <!--   <timepicker ng-model="vm.endTime" ng-change="changed()" id="test_phase__end_time"></timepicker> -->
+  <!-- </div> -->
+
+  <div class="form-group">
+    <label for="test_phase__lob_choices">LOB</label>
+    <select class="form-control"
+	    id="test_phase__lob_choices"
+	    ng-model="vm.lob"
+	    ng-options="lobType.value for lobType in vm.lobTypes"></select>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">
+      Submit
+    </button>
+  </div>
+  
+</form>

@@ -14,7 +14,7 @@
 	    scope: {
 		testPhases: '='
 	    },
-	    templateUrl: '/static/templates/planner/test_phases.html'
+	    templateUrl: '/static/templates/planner/test-phases.html'
 	};
 
 	return directive;

@@ -5,21 +5,34 @@
 	.module('PACTT.planner.controllers')
 	.controller('PlannerController', PlannerController);
 
-    PlannerController.$inject = ['$routeParams', 'Events', 'TestPhases', 'Snackbar'];
+    PlannerController.$inject = ['$scope', '$routeParams','Authentication', 'Events',
+				 'TestPhases', 'Snackbar', 'ngDialog'];
 
     
-    function PlannerController($routeParams, Events, TestPhases, Snackbar) {
+    function PlannerController($scope, $routeParams, Authentication, Events, TestPhases,
+			       Snackbar, ngDialog) {
 	var vm = this;
 
+	vm.isAuthenticated = Authentication.isAuthenticated();
 	vm.event = undefined;
 	vm.test_phases = [];
+	$scope.event_id = $routeParams.event_id;
 
+	vm.openDialog = openDialog;
 
 	activate();
 
+	function openDialog() {
+	    ngDialog.open({
+		template: '/static/templates/planner/new-test-phase.html',
+		controller: 'NewTestPhaseController as vm',
+		scope: $scope
+	    });
+	}
+
 
 	function activate() {
-	    var event_id = $routeParams.event_id;
+	    var event_id = $scope.event_id;
 	    console.log("[DEBUG] inside PlannerController:activate(), event_id = " + event_id);
 
 	    Events.get(event_id).then(eventsSuccessFn, errorFn);

@@ -20,7 +20,7 @@
 		author: {
 		    username: Authentication.getAuthenticatedAccount().username
 		}
-	    })
+	    });
 
 	    $scope.closeThisDialog();
 

@@ -12,7 +12,7 @@
 	    scope: {
 		testPhase: '='
 	    },
-	    templateUrl: '/static/templates/planner/test_phase.html'
+	    templateUrl: '/static/templates/planner/test-phase.html'
 	};
 
 	return directive;

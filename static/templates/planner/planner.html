@@ -2,9 +2,14 @@
   
   <div class="jumbotron event__header">
     <h1 class="event__head">{{ vm.event.datacenter }}</h1>
-    <p class="event__content">{{ vm.event.date }} - {{ vm.event.description}}</p>
+    <p class="event__content">{{ vm.event.date }} - {{ vm.event.description }}</p>
   </div>
 
   <test-phases test-phases="vm.test_phases"></test-phases>
+
+  <a class="btn btn-primary btn-fab btn-raised mdi-content-add btn-add-new-block"
+     href=""
+     ng-show="vm.isAuthenticated"
+     ng-click="vm.openDialog()"></a>  
   
 </div>

@@ -9,11 +9,11 @@
 	]);
 
     angular
+	.module('PACTT.planner.controllers', ['ui.bootstrap']);
+
+    angular
+	.module('PACTT.planner.directives', ['ngDialog']);
+
+    angular
 	.module('PACTT.planner.services', []);
-
-    angular
-	.module('PACTT.planner.controllers', []);
-
-    angular
-	.module('PACTT.planner.directives', []);
 })();

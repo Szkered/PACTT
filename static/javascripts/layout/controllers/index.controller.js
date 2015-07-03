@@ -29,7 +29,6 @@
 	    $scope.$on('post.created.error', function () {
 		vm.posts.shift();
 	    });
-
 	    
 	    function postsSuccessFn(data, status, headers, config) {
 		vm.posts = data.data;
