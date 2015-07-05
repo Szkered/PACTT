@@ -17,7 +17,6 @@
 			       Apps, $location, $cookies) {
 	var vm = this;
 
-	// $scope.isAuthenticated = Authentication.isAuthenticated;
 	vm.isAuthenticated = Authentication.isAuthenticated;
 	$scope.event_id = $routeParams.event_id;
 	
