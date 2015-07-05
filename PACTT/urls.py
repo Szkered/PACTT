@@ -12,6 +12,8 @@ router.register(r'accounts', AccountViewSet)
 router.register(r'posts', PostViewSet)
 router.register(r'events', EventViewSet)
 router.register(r'test_phases', TestPhaseViewSet)
+router.register(r'apps', AppViewSet)
+router.register(r'scopes', ScopeViewSet)
 
 accounts_router = routers.NestedSimpleRouter(
     router, r'accounts', lookup='account'
@@ -23,11 +25,17 @@ events_router = routers.NestedSimpleRouter(
 )
 events_router.register(r'test_phases', EventTestPhaseViewSet)
 
+scopes_router = routers.NestedSimpleRouter(
+    router, r'events', lookup='event'
+)
+scopes_router.register(r'scopes', EventScopeViewSet)
+
 urlpatterns = patterns(
     '',
     url(r'^api/v1/', include(router.urls)),
     url(r'^api/v1/', include(accounts_router.urls)),
     url(r'^api/v1/', include(events_router.urls)),
+    url(r'^api/v1/', include(scopes_router.urls)),
     
     url(r'^api/v1/auth/login/$', LoginView.as_view(), name='login'),
     url(r'^api/v1/auth/logout/$', LogoutView.as_view(), name='logout'),

@@ -16,8 +16,6 @@
 	activate();
 
 	
-
-	
 	function activate() {
 	    console.log("[INFO] activate TestPhasesController");
 	    $scope.$watchCollection(

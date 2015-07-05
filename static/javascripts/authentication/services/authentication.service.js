@@ -84,6 +84,7 @@
 	}
 
 	function setAuthenticatedAccount(account) {
+	    console.log("invoked");
 	    $cookies.authenticatedAccount = JSON.stringify(account);
 	}
 

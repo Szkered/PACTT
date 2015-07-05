@@ -26,3 +26,24 @@ class EventTestPhaseViewSet(viewsets.ViewSet):
         serializer = self.serializer_class(queryset, many=True)
 
         return Response(serializer.data)
+
+    
+class AppViewSet(viewsets.ModelViewSet):
+    queryset = App.objects.order_by('aid')
+    serializer_class = AppSerializer
+    
+
+class ScopeViewSet(viewsets.ModelViewSet):
+    queryset = Scope.objects.order_by('app__aid')
+    serializer_class = ScopeSerializer
+
+
+class EventScopeViewSet(viewsets.ViewSet):
+    queryset = Scope.objects.order_by('app__aid').select_related('Event').all()
+    serializer_class = ScopeSerializer
+
+    def list(self, request, event_pk=None):
+        queryset = self.queryset.filter(event__pk=event_pk)
+        serializer = self.serializer_class(queryset, many=True)
+
+        return Response(serializer.data)

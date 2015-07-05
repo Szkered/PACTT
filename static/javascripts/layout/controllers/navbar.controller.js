@@ -14,6 +14,8 @@
 	vm.logout = logout;
 	vm.subtitle = 'sub';
 
+	console.log('[DEBUG] in nav ctrl: ' + $scope.user);
+
 	activate();
 	
 

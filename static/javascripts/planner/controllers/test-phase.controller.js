@@ -21,7 +21,7 @@
 	    ngDialog.open({
 		template: '/static/templates/planner/edit-test-phase.html',
 		controller: 'EditTestPhaseController as vm',
-		testPhase: $scope.testPhase
+		scope: $scope
 	    });
 	}
 	

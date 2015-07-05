@@ -22,3 +22,17 @@ class TestPhaseSerializer(serializers.ModelSerializer):
     #     exclusions = super(TestPhaseSerializer, self).get_validation_exclusions()
 
     #     return exclusions + ['event']
+
+class AppSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = App
+        fields = {'id', 'aid', 'name', 'RTO', 'priority'}
+        read_only_field = {'id'}
+
+class ScopeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Scope
+        fields = {'id', 'event', 'app'}
+        read_only_field = {'id'}   
