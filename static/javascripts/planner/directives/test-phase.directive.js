@@ -8,6 +8,8 @@
 
     function testPhase() {
 	var directive = {
+	    controller: 'TestPhaseController',
+	    controllerAs: 'vm',
 	    restrict: 'E',
 	    scope: {
 		testPhase: '='

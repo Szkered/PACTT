@@ -9,7 +9,7 @@
 	]);
 
     angular
-	.module('PACTT.planner.controllers', ['ui.bootstrap']);
+	.module('PACTT.planner.controllers', ['ui.bootstrap', 'mdDateTime', 'ngMaterial']);
 
     angular
 	.module('PACTT.planner.directives', ['ngDialog']);

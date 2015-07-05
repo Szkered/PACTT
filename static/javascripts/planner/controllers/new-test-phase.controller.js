@@ -39,15 +39,14 @@
 	}
 	
 	function submit() {
-	    // TODO: receiver for broadcast in planner ctrl
-	    // $rootScope.$broadcast('test-phase.created', {
-	    // 	description: vm.description,
-	    //  event: Events.get(),
-	    // 	startTime: vm.startTime,
-	    // 	endTime: vm.endTime,
-	    // 	lob: vm.lob
-	    // });
-	    console.log("[DEBUG] submit: event: " + vm.event);
+
+	    $rootScope.$broadcast('test-phase.created', {
+	    	description: vm.description,
+	    	startTime: vm.startTime,
+	    	endTime: vm.endTime,
+	    	lob: vm.lob.key
+	    });
+
 
 	    $scope.closeThisDialog();
 

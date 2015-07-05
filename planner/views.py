@@ -18,7 +18,7 @@ class TestPhaseViewSet(viewsets.ModelViewSet):
 
     
 class EventTestPhaseViewSet(viewsets.ViewSet):
-    queryset = TestPhase.objects.select_related('Event').all()
+    queryset = TestPhase.objects.order_by('startTime').select_related('Event').all()
     serializer_class = TestPhaseSerializer
 
     def list(self, request, event_pk=None):

@@ -1,15 +1,75 @@
 <div class="event" ng-show="vm.event">
-  
-  <div class="jumbotron event__header">
-    <h1 class="event__head">{{ vm.event.datacenter }}</h1>
-    <p class="event__content">{{ vm.event.date }} - {{ vm.event.description }}</p>
+
+  <div class="col-xs-9 col-sm-7 col-md-5 col-lg-3">
+    <div class="jumbotron event__header">
+      <h1 class="event__head">{{ vm.event.datacenter }}</h1>
+      <p class="event__content">{{ vm.event.date }} - {{ vm.event.description }}</p>
+    </div>
+
+    <test-phases test-phases="vm.test_phases"></test-phases>
+
+    <a class="btn btn-primary btn-fab btn-raised mdi-content-add btn-add-new-block col-md-offset-5"
+       href="javascript:void(0)"
+       ng-show="vm.isAuthenticated"
+       ng-click="vm.openAddDialog()"></a>
   </div>
 
-  <test-phases test-phases="vm.test_phases"></test-phases>
 
-  <a class="btn btn-primary btn-fab btn-raised mdi-content-add btn-add-new-block"
-     href=""
-     ng-show="vm.isAuthenticated"
-     ng-click="vm.openDialog()"></a>  
-  
+  <div class="col-xs-3 col-sm-5 col-md-7 col-lg-9">
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Column heading</th>
+          <th>Column heading</th>
+          <th>Column heading</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="info">
+          <td>3</td>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="success">
+          <td>4</td>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="danger">
+          <td>5</td>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="warning">
+          <td>6</td>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="active">
+          <td>7</td>
+          <td>Column content</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>

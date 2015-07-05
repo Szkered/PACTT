@@ -36,10 +36,18 @@
   <div class="form-group">
     <label for="test_phase__lob_choices">LOB</label>
     <select class="form-control"
-	    id="test_phase__lob_choices"
-	    ng-model="vm.lob"
-	    ng-options="lobType.value for lobType in vm.lobTypes"></select>
+  	    id="test_phase__lob_choices"
+  	    ng-model="vm.lob"
+  	    ng-options="lobType.value for lobType in vm.lobTypes"></select>
   </div>
+
+  <!-- <div class="form-group"> -->
+  <!--   <md-select placeholder="LOB" ng-model="vm.lob"> -->
+  <!--     <md-option ng-repeat="lobType in vm.lobTypes" value="{{lobType.key}}">{{lobType.value}}</md-option> -->
+  <!--   </md-select> -->
+  <!-- </div> -->
+
+
 
   <div class="form-group">
     <button class="btn btn-primary" type="submit">

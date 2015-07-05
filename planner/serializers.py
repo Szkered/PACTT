@@ -18,7 +18,7 @@ class TestPhaseSerializer(serializers.ModelSerializer):
                   'created_at', 'updated_at'}
         read_only_field = {'id', 'created_at', 'updated_at'}
 
-    def get_validation_exclusions(self, *args, **kwargs):
-        exclusions = super(TestPhaseSerializer, self).get_validation_exclusions()
+    # def get_validation_exclusions(self, *args, **kwargs):
+    #     exclusions = super(TestPhaseSerializer, self).get_validation_exclusions()
 
-        return exclusions + ['event']
+    #     return exclusions + ['event']

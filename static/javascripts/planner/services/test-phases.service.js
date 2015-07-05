@@ -12,7 +12,9 @@
 	var TestPhases = {
 	    all: all,
 	    create: create,
-	    get: get
+	    get: get,
+	    update: update,
+	    destroy: destroy
 	};
 
 	return TestPhases;
@@ -35,6 +37,14 @@
 
 	function get(event_id) {
 	    return $http.get('/api/v1/events/' + event_id + '/test_phases/');
+	}
+
+	function update(test_phase){
+	    return $http.put('/api/v1/test_phases/' + test_phase.id + '/', test_phase);
+	}
+
+	function destroy(id){
+	    return $http.delete('/api/v1/test_phases/' + id + '/');
 	}
     }
 })();

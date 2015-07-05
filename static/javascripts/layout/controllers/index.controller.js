@@ -12,27 +12,27 @@
 	var vm = this;
 
 	vm.isAuthenticated = Authentication.isAuthenticated();
-	vm.posts = [];
+	// vm.posts = [];
 	vm.events = [];
 
 	activate();
 
 	
 	function activate() {
-	    Posts.all().then(postsSuccessFn, errorFn);
+	    // Posts.all().then(postsSuccessFn, errorFn);
 	    Events.all().then(eventsSuccessFn, errorFn);
 
-	    $scope.$on('post.created', function (event, post) {
-		vm.posts.unshift(post);
-	    });
+	    // $scope.$on('post.created', function (event, post) {
+	    // 	vm.posts.unshift(post);
+	    // });
 
-	    $scope.$on('post.created.error', function () {
-		vm.posts.shift();
-	    });
+	    // $scope.$on('post.created.error', function () {
+	    // 	vm.posts.shift();
+	    // });
 	    
-	    function postsSuccessFn(data, status, headers, config) {
-		vm.posts = data.data;
-	    }
+	    // function postsSuccessFn(data, status, headers, config) {
+	    // 	vm.posts = data.data;
+	    // }
 
 	    function eventsSuccessFn(data, status, headers, config) {
 		vm.events = data.data;

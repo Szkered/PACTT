@@ -18,8 +18,6 @@
 	return Events;
 
 	function all() {
-	    console.log("[INFO] in EventsService: all()");
-	    console.log($http.get('/api/v1/events/'));
 	    return $http.get('/api/v1/events/');
 	}
 

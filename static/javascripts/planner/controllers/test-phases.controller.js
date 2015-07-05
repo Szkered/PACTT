@@ -5,24 +5,25 @@
 	.module('PACTT.planner.controllers')
 	.controller('TestPhasesController', TestPhasesController);
 
-    TestPhasesController.$inject = ['$scope'];
+    TestPhasesController.$inject = ['$scope', '$filter'];
 
     
-    function TestPhasesController($scope) {
+    function TestPhasesController($scope, $filter) {
 	var vm = this;
 
-	vm.column = [];
+	vm.test_phases = [];
 
 	activate();
 
+	
 
+	
 	function activate() {
 	    console.log("[INFO] activate TestPhasesController");
-	    $scope.$watchCollection(function () { return $scope.testPhases; },
-				    function (current, original) {
-					vm.column = current;
-					console.log("[DEBUG] column = " + vm.column);
-				    });
+	    $scope.$watchCollection(
+		function () { return $scope.testPhases; }, function (current, original) {
+		vm.test_phases = $filter('orderBy')(current, 'startTime');
+	    });
 	}
     }
 })();
