@@ -8,6 +8,8 @@
 
     function scopes() {
 	var directive = {
+	    controller: 'ScopesController',
+	    controllerAs: 'vm',
 	    restrict: 'E',
 	    scope: {
 		apps: '='

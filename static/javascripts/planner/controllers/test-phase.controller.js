@@ -12,7 +12,7 @@
     function TestPhaseController($rootScope, $scope, TestPhases, Authentication, ngDialog) {
 	var vm = this;
 
-	vm.isAuthenticated = Authentication.isAuthenticated;
+	vm.isAuthenticated = Authentication.isAuthenticated();
 	vm.destroy = destroy;
 	vm.openEditDialog = openEditDialog;
 	

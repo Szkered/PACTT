@@ -29,10 +29,14 @@
 	    controller: 'ProfileSettingsController',
 	    controllerAs: 'vm',
 	    templateUrl: '/static/templates/profiles/settings.html'
-	}).when('/events/:event_id', {
+	}).when('/planner/:event_id', {
 	    controller: 'PlannerController',
 	    controllerAs: 'vm',
 	    templateUrl: '/static/templates/planner/planner.html'
+	}).when('/tracker/:event_id', {
+	    controller: 'TrackerController',
+	    controllerAs: 'vm',
+	    templateUrl: '/static/templates/tracker/tracker.html'
 	}).otherwise('/');
     }
 })();

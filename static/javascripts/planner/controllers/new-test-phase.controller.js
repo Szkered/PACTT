@@ -44,7 +44,7 @@
 	    	description: vm.description,
 	    	startTime: vm.startTime,
 	    	endTime: vm.endTime,
-	    	lob: vm.lob.key
+	    	lob: vm.lob
 	    });
 
 
@@ -52,7 +52,7 @@
 
 
 	    TestPhases.create($scope.event_id, vm.description, vm.startTime,
-			      vm.endTime, vm.lob.key)
+			      vm.endTime, vm.lob)
 		.then(createTestPhaseSuccessFn, errorFn);
 
 

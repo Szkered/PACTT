@@ -5,13 +5,15 @@
 	.module('PACTT.planner.controllers')
 	.controller('EventsController', EventsController);
 
-    EventsController.$inject = ['$scope'];
+    EventsController.$inject = ['$scope', 'Authentication'];
 
     
-    function EventsController($scope) {
+    function EventsController($scope, Authentication) {
 	var vm = this;
 
-	vm.column = [];
+	vm.events = [];
+	// vm.isAuthenticated = Authentication.isAuthenticated();
+	vm.isAuthenticated = true;
 
 	activate();
 
@@ -20,20 +22,8 @@
 	    console.log("[INFO] activate EventsController");
 	    $scope.$watchCollection(function () { return $scope.events; },
 				    function (current, original) {
-					vm.column = current;
+					vm.events = current;
 				    });
-	    // $scope.$watchCollection(function () { return $scope.events; },
-	    // 			    function (current, original) {
-	    // 				vm.columns = Columbus.render(current, original)
-	    // 			    });
-	    // $scope.$watchCollection(function () { return $scope.events; },
-	    // 			    function (current, original) {
-	    // 				vm.columns = Columbus.render(current, original)
-	    // 			    });
-	    // $scope.$watch(function () { return $(window).width(); },
-	    // 		  function (current, original) {
-	    // 		      vm.columns = Columbus.render(current, original)
-	    // 		  });
 	}
     }
 })();

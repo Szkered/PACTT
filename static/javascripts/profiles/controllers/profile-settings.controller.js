@@ -6,11 +6,12 @@
 	.controller('ProfileSettingsController', ProfileSettingsController);
 
     ProfileSettingsController.$inject = [
-	'$location', '$routeParams', 'Authentication', 'Profile', 'Snackbar'
+	'$rootScope', '$location', '$routeParams', 'Authentication', 'Profile', 'Snackbar'
     ];
 
 
-    function ProfileSettingsController($location, $routeParams, Authentication, Profile, Snackbar) {
+    function ProfileSettingsController($rootScope, $location, $routeParams, Authentication,
+				       Profile, Snackbar) {
 	var vm = this;
 	
 	vm.destory = destory;
@@ -20,17 +21,14 @@
 
 
 	function activate() {
+	    $rootScope.$broadcast('subheader', 'Profile Setting');
 	    var authenticatedAccount = Authentication.getAuthenticatedAccount();
-	    // var sid = $routeParams.sid.substr(1);
 	    var sid = $routeParams.sid;
 
 	    if (!authenticatedAccount) {
 		$location.url('/');
 		Snackbar.error('You are not logged in!');
 	    } else {
-		console.log(authenticatedAccount.sid);
-		console.log($routeParams.sid);
-		console.log($routeParams.sid.substr(1));
 		if (authenticatedAccount.sid !== sid) {
 		    $location.url('/');
 		    Snackbar.error('You are not authorized to view this page!');

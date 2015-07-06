@@ -10,19 +10,18 @@
 
     function NavbarController($scope, Authentication) {
 	var vm = this;
-
+	
 	vm.logout = logout;
-	vm.subtitle = 'sub';
 
-	console.log('[DEBUG] in nav ctrl: ' + $scope.user);
+	console.log('[DEBUG] in nav ctrl: ' + $scope.subheader);
 
 	activate();
 	
 
 	function activate() {
-	    // $scope.$on('title', function(event, subtitle) {
-	    // 	vm.subtitle = ' | ' + subtitle;
-	    // });
+	    $scope.$on('subheader', function(event, subtitle) {
+	    	vm.subheader = ' | ' + subtitle;
+	    });
 	}
 
 	function logout() {

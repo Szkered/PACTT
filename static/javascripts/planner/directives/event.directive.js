@@ -8,6 +8,8 @@
 
     function event() {
 	var directive = {
+	    controller: 'EventController',
+	    controllerAs: 'vm',
 	    restrict: 'E',
 	    scope: {
 		event: '='

@@ -17,7 +17,7 @@
 			       Apps, $location, $cookies) {
 	var vm = this;
 
-	vm.isAuthenticated = Authentication.isAuthenticated;
+	vm.isAuthenticated = Authentication.isAuthenticated();
 	$scope.event_id = $routeParams.event_id;
 	
 	vm.event = undefined;
@@ -95,7 +95,8 @@
 	    
 	    function eventsSuccessFn(data, status, headers, config) {
 		vm.event = data.data;
-		$rootScope.$broadcast('title', vm.event.description + ' - ' + vm.event.date);
+		var header = 'Planner | ' + vm.event.description + ' - ' + vm.event.date;
+		$rootScope.$broadcast('subheader', header);
 	    }
 
 	    function testPhasesSuccessFn(data, status, headers, config) {

@@ -5,20 +5,14 @@
 	.module('PACTT.planner.controllers')
 	.controller('ScopesController', ScopesController);
 
-    ScopesController.$inject = ['$scope'];
+    ScopesController.$inject = ['$scope', 'Authentication'];
 
 
-    function ScopesController($scope) {
+    function ScopesController($scope, Authentication) {
 	var vm = this;
 
 	vm.apps = [];
-
-	// activate();
-
-	
-	// function activate() {
-	    
-	// }
+	vm.isAuthenticated = Authentication.isAuthenticated();
     }
     
 })();
