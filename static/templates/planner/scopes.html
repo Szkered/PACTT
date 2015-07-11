@@ -5,8 +5,9 @@
         <th>AID</th>
         <th>Name</th>
         <th>RTO</th>
-        <th>priority</th>
-	<th>scoped</th>
+        <th>Priority</th>
+	<th>Scoped</th>
+	<th>Descope Reason</th>
       </tr>
     </thead>
     <tbody>
@@ -17,8 +18,13 @@
         <td>{{ app.priority }}</td>
 	<td><md-checkbox ng-model="app.scoped"
 			 aria-label="scoped"
-			 ng-disabled="!vm.isAuthenticated">
+			 ng-disabled="!vm.isAuthenticated"
+			 ng-click="vm.scopeToggle(app)">
 	</md-checkbox></td>
+	<td><textarea class="form-control"
+		      ng-model="app.descope_reason"
+		      ng-required="!app.scoped"
+		      ng-disabled="app.scoped"></td>
       </tr>
     </tbody>
   </table>

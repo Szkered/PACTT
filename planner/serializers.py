@@ -34,5 +34,5 @@ class ScopeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Scope
-        fields = {'id', 'event', 'app'}
+        fields = {'id', 'event', 'app', 'scoped', 'descope_reason'}
         read_only_field = {'id'}   

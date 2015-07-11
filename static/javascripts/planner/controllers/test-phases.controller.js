@@ -12,6 +12,7 @@
 	var vm = this;
 
 	vm.test_phases = [];
+	vm.editMode = true;
 
 	activate();
 

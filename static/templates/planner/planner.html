@@ -1,22 +1,19 @@
-<div class="event" ng-show="vm.event">
+<form role="form" ng-submit="vm.saveAndBack()">
 
   <div class="col-xs-9 col-sm-7 col-md-5 col-lg-3">
-    <test-phases test-phases="vm.test_phases"></test-phases>
-
-    <a class="btn btn-primary btn-fab btn-raised mdi-content-add"
-       href="javascript:void(0)"
-       ng-show="vm.isAuthenticated"
-       ng-click="vm.openAddDialog()"></a>
+    <test-phases test-phases="vm.test_phases"
+		 open-add-dialog="vm.openAddDialog"
+		 is-authenticated="vm.isAuthenticated">
+    </test-phases>
   </div>
 
   <div class="col-xs-3 col-sm-5 col-md-7 col-lg-9">
     <scopes apps="vm.apps"></scopes>
-
-    <a class="btn btn-success btn-raised pull-right"
-       href="javascript:void(0)"
-       ng-show="vm.isAuthenticated"
-       ng-click="vm.saveAndBack()">Save and back</a>
-
+    <button class="btn btn-success btn-raised pull-right"
+	    type="submit"
+	    ng-show="vm.isAuthenticated">
+      Save and back
+    </button>
   </div>
   
-</div>
+</form>

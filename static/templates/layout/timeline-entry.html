@@ -1,0 +1,83 @@
+<!-- exec mode -->
+<div class="timeline-badge shadow-z-1"
+     ng-class="vm.state"
+     ng-if="!editMode">
+  <i class="glyphicon glyphicon-ok"
+     ng-if="vm.isSuccess()">
+  </i>
+  <md-progress-circular md-mode="determinate"
+			ng-if="vm.isCurrent()"
+			class="md-accent"
+			value="{{ vm.timer }}">
+  </md-progress-circular>
+  <i class="glyphicon glyphicon-option-vertical"
+     ng-if="vm.isWaiting()">
+  </i>
+</div>
+
+<div class="timeline-panel" ng-if="!editMode">
+  <div class="timeline-heading">
+    <h4 class="timeline-title">{{ testPhase.description }}</h4>
+    <p>
+      <small class="text-muted">
+	<i class="glyphicon glyphicon-time"></i>
+	{{ testPhase.startTime | date:'HH:mm' }} - {{ testPhase.endTime | date:'HH:mm' }}
+      </small>
+    </p>
+  </div>
+  <hr>
+  <div class="timeline-body">
+    <p>72/72 Finished </p>
+    <!-- <md-progress-linear md-mode="indeterminate"></md-progress-linear> -->
+    <div class="progress">
+      <div class="progress-bar" style="width: {{vm.timer}}%"></div>
+    </div>
+    <p ng-if="vm.isCurrent(testPhase)">{{ vm.now | date:'HH:mm:ss' }}</p>
+  </div>
+</div>
+
+<!-- edit mode -->
+<div class="timeline-badge waiting shadow-z-1"
+     ng-if="editMode">
+  <i class="glyphicon glyphicon-pencil"></i>
+</div>
+
+<div class="timeline-panel" ng-if="editMode">
+  
+  <div class="timeline-heading">
+    <h4 class="timeline-title">{{ testPhase.description }}</h4>
+    <div class="row">
+      <div class="form-group col-lg-6">
+	<label for="test_phase__start_time">Start Time</label>
+	<input class="form-control"
+	       type="text"
+	       id="vm.test_phase__start_time"
+	       ng-model="testPhase.startTime"
+  	       placeholder="eg. 6:30"/>
+      </div>
+      <div class="form-group col-lg-6">
+	<label for="test_phase__end_time">End Time</label>
+	<input class="form-control"
+	       type="text"
+	       id="vm.test_phase__end_time"
+	       ng-model="testPhase.endTime"
+  	       placeholder="eg. 7:30"/>
+      </div>
+    </div>
+  </div>
+  
+  <div class="timeline-body">
+    <div class="form-group">
+      <label for="test_phase__lob">LOB</label>
+      <md-radio-group id="test_phase__lob" ng-model="testPhase.lob">
+	<md-radio-button ng-repeat="lobType in vm.lobTypes"
+			 ng-value="lobType.key">
+	  {{ lobType.value }}
+	</md-radio-button>
+      </md-radio-group>
+    </div>
+    <a class="btn btn-danger"
+       href="javascript:void(0)"
+       ng-click="vm.destroy()">Delete</a>
+  </div>
+</div>

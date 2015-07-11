@@ -1,17 +1,36 @@
 <div class="event" ng-show="vm.event">
-
-  <div class="col-xs-9 col-sm-7 col-md-5 col-lg-3">
-    <test-phases test-phases="vm.test_phases"></test-phases>
-  </div>
-
-  <div class="col-xs-3 col-sm-5 col-md-7 col-lg-9">
-    <scopes apps="vm.apps"></scopes>
-
-    <a class="btn btn-success btn-raised pull-right"
-       href="javascript:void(0)"
-       ng-show="vm.isAuthenticated"
-       ng-click="vm.saveAndBack()">Save and back</a>
-
-  </div>
   
+  <div class="row">
+    
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <timeline test-phases="vm.test_phases" edit-mode="vm.editMode"></timeline>
+    </div>
+
+    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+      <div class="panel">
+    	<table class="table table-striped table-hover">
+    	  <thead>
+    	    <tr>
+              <th>AID</th>
+              <th>Name</th>
+              <th>RTO</th>
+              <th>Priority</th>
+    	      <th>Status</th>
+    	    </tr>
+    	  </thead>
+    	  <tbody>
+    	    <tr ng-repeat="app in vm.apps" ng-show="app.scoped">
+              <td>{{ app.aid }}</td>
+              <td>{{ app.name }}</td>
+              <td>{{ app.RTO }}</td>
+              <td>{{ app.priority }}</td>
+    	      <td><textarea class="form-control"
+    			    ng-model="app.status"></td>
+    	    </tr>
+    	  </tbody>
+    	</table>
+      </div>
+    </div>
+    
+  </div>
 </div>

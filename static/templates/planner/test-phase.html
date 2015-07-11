@@ -1,22 +1,20 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     
-    <div class="panel panel-primary test_phase">
-      <div class="panel-heading test_phase__meta">
-        <h3 class="panel-title">{{ testPhase.description }}</h3>
-      </div>
-      <div class="panel-body test_phase__content">
-	{{ testPhase.startTime | date:'HH:mm:ss' }} - {{ testPhase.endTime | date:'HH:mm:ss' }} <br>
-	{{ testPhase.lob }}
-
-	<a class="btn btn-xs btn-primary pull-right mdi-content-create"
-	   href="javascript:void(0)"
-	   ng-show="vm.isAuthenticated"
-	   ng-click="vm.openEditDialog()"> Edit</a>
-	
+    <div class="panel test_phase">
+      <div class="panel-body">
+        <h3>{{ testPhase.description }}</h3>
+	<div class="meta__content">
+	  {{ testPhase.startTime | date:'HH:mm' }} - {{ testPhase.endTime | date:'HH:mm' }} <br>
+	  {{ testPhase.lob }}
+	  <hr>
+	  <a class="btn btn-xs btn-primary pull-right mdi-content-create"
+	     href="javascript:void(0)"
+	     ng-show="vm.isAuthenticated"
+	     ng-click="vm.openEditDialog()"> Edit</a>
+	</div>
       </div>
     </div>
 
   </div>
 </div>
-

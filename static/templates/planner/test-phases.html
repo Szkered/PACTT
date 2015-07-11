@@ -1,7 +1,23 @@
-<div class="row" ng-cloak>
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div ng-repeat="test_phase in vm.test_phases">
-      <test-phase test-phase="test_phase"></test-phase>
-    </div>
-  </div>
+<!-- <div class="row" ng-cloak> -->
+<!--   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> -->
+<!--     <div ng-repeat="test_phase in vm.test_phases"> -->
+<!--       <test-phase test-phase="test_phase"></test-phase> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
+
+<div class="container">
+  <ul class="timeline">
+    <li ng-repeat="testPhase in vm.test_phases">
+      <timeline-entry test-phase="testPhase" edit-mode="vm.editMode"></timeline-entry>
+    </li>
+    <li ng-if="vm.editMode">
+      <div class="timeline-badge">
+	<a class="btn btn-primary btn-fab btn-raised mdi-content-add"
+	   ng-show="isAuthenticated"
+	   ng-click="openAddDialog()"
+	   href="javascript:void(0)"></a>
+      </div>
+    </li>
+  </ul>
 </div>

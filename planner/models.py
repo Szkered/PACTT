@@ -34,6 +34,8 @@ class App(models.Model):
 class Scope(models.Model):
     event = models.ForeignKey(Event)
     app = models.ForeignKey(App)
+    scoped = models.BooleanField(default=True)
+    descope_reason = models.CharField(max_length=50, blank=True)
 
 class Assignment(models.Model):
     app = models.ForeignKey(App)

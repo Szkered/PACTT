@@ -12,7 +12,9 @@
 	    controllerAs: 'vm',
 	    restrict: 'E',
 	    scope: {
-		testPhases: '='
+		testPhases: '=',
+		openAddDialog: '=',
+		isAuthenticated: '='
 	    },
 	    templateUrl: '/static/templates/planner/test-phases.html'
 	};

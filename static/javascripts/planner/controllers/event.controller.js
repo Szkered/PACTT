@@ -11,7 +11,7 @@
     function EventController($scope, $location, Authentication) {
 	var vm = this;
 
-	// vm.isAuthenticated = Authentication.isAuthenticated();
+	vm.isAuthenticated = Authentication.isAuthenticated();
 	vm.isAuthenticated = true;
 	vm.redirect = redirect;
 

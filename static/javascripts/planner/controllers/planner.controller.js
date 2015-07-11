@@ -5,22 +5,20 @@
 	.module('PACTT.planner.controllers')
 	.controller('PlannerController', PlannerController);
 
-    PlannerController.$inject = ['$scope', '$routeParams','Authentication',
-				 'Snackbar', 'ngDialog', '$rootScope',
-				 'Events', 'TestPhases', 'Scopes',
-				 'Apps', '$location', '$cookies'];
+    PlannerController.$inject = [
+	'$scope', '$routeParams','Authentication', 'Snackbar', 'ngDialog', '$rootScope',
+	'Events', 'TestPhases', 'Scopes', 'Apps', '$location'
+    ];
 
     
-    function PlannerController($scope, $routeParams, Authentication,
-			       Snackbar, ngDialog, $rootScope,
-			       Events, TestPhases, Scopes,
-			       Apps, $location, $cookies) {
+    function PlannerController(
+	$scope, $routeParams, Authentication, Snackbar, ngDialog, $rootScope,
+	Events, Testhases, Scopes, Apps, $location) {
 	var vm = this;
 
 	vm.isAuthenticated = Authentication.isAuthenticated();
 	$scope.event_id = $routeParams.event_id;
 	
-	vm.event = undefined;
 	vm.test_phases = [];
 	vm.apps = [];
 
@@ -29,8 +27,6 @@
 
 	activate();
 
-	console.log($cookies.authenticatedAccount);
-	
 
 	function openAddDialog() {
 	    ngDialog.open({
@@ -42,23 +38,16 @@
 
 	function saveAndBack() {
 	    for(var i = 0; i < vm.apps.length; i++) {
-	    	if(vm.apps[i].scoped === false) {
-	    	    for(var j = 0; j < $scope.scopeArray.length; j++) {
-			if($scope.scopeArray[j].app === vm.apps[i].id) {
-			    Scopes.destroy($scope.scopeArray[j].id);
-			}
-	    	    }
-	    	} else {
-		    var noScope = true;
-		    for(var j = 0; j < $scope.scopeArray.length; j++) {
-			if($scope.scopeArray[j].app === vm.apps[i].id) {
-			    noScope = false;
-			}
-	    	    }
-		    if(noScope) {
-			Scopes.create($scope.event_id, vm.apps[i].id);
-		    }
+		if(!$scope.scopeArray[i]){
+		    Scopes.create($scope.event_id, vm.apps[i].id);
+		} else {
+		    $scope.scopeArray[i].scoped = vm.apps[i].scoped;
+		    $scope.scopeArray[i].descope_reason = vm.apps[i].descope_reason;
+		    Scopes.update($scope.scopeArray[i]);
 		}
+	    }
+	    for(var i = 0; i < vm.test_phases.length; i++) {
+		TestPhases.update(vm.test_phases[i]);
 	    }
 	    $location.url('/');
 	}
@@ -66,7 +55,6 @@
 
 	function activate() {
 	    var event_id = $scope.event_id;
-	    console.log("[DEBUG] inside PlannerController:activate(), event_id = " + event_id);
 
 	    Events.get(event_id).then(eventsSuccessFn, errorFn);
 	    TestPhases.get(event_id).then(testPhasesSuccessFn, errorFn);
@@ -105,23 +93,14 @@
 	    
 	    function appsSuccessFn(data, status, headers, config) {
 		vm.apps = data.data;
-		
-		for(var i = 0; i < vm.apps.length; i++) {
-		    vm.apps[i].scoped = false;
-		}
-		
 		Scopes.get(event_id).then(scopesSuccessFn, errorFn);
 		
 		function scopesSuccessFn(data, status, headers, config) {
 		    $scope.scopeArray = data.data;
-
-		    for(var i = 0; i < $scope.scopeArray.length; i++){
-			for(var j = 0; j < vm.apps.length; j++) {
-			    if (vm.apps[j].id === $scope.scopeArray[i].app) {
-				vm.apps[j].scoped = true;
-				break;
-			    }
-			}
+		    for(var i = 0; i < $scope.scopeArray.length; i++) {
+			vm.apps[i].scope = $scope.scopeArray[i];
+			vm.apps[i].scoped = $scope.scopeArray[i].scoped;
+			vm.apps[i].descope_reason = $scope.scopeArray[i].descope_reason;
 		    }
 		}
 	    }

@@ -10,7 +10,8 @@
 	    'PACTT.layout',
 	    'PACTT.posts',
 	    'PACTT.profiles',
-	    'PACTT.planner'
+	    'PACTT.planner',
+	    'PACTT.tracker'
 	]);
 
     angular

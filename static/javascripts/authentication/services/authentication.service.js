@@ -80,7 +80,6 @@
 	}
 
 	function isAuthenticated() {
-	    console.log('[DEBUG] auth invoked: ' + $cookies.get('authenticatedAccount'));
 	    return !!$cookies.getObject('authenticatedAccount');
 	}
 

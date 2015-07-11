@@ -13,6 +13,7 @@
 	    all: all,
 	    create: create,
 	    get: get,
+	    update: update,
 	    destroy: destroy
 	};
 
@@ -31,6 +32,10 @@
 
 	function get(event_id) {
 	    return $http.get('/api/v1/events/' + event_id + '/scopes/');
+	}
+
+	function update(scope){
+	    return $http.put('/api/v1/scopes/' + scope.id + '/', scope);
 	}
 
 	function destroy(id){

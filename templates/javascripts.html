@@ -17,7 +17,9 @@
 <script type="text/javascript" src="{% static 'bower_components/angular-aria/angular-aria.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/angular-animate/angular-animate.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/angular-material/angular-material.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/pubnub-angular/lib/pubnub-angular.js' %}"></script>
 <script type="text/javascript" src="{% static 'lib/snackbarjs/snackbar.min.js' %}"></script>
+<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
 
 <script type="text/javascript" src="{% static 'javascripts/PACTT.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/PACTT.config.js' %}"></script>
@@ -29,6 +31,10 @@
 <script type="text/javascript" src="{% static 'javascripts/layout/layout.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/layout/controllers/navbar.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/layout/controllers/index.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/timeline.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/timeline-entry.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/directives/timeline.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/directives/timeline-entry.directive.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/layout/services/layout.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/posts/posts.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/posts/services/posts.service.js' %}"></script>
@@ -60,5 +66,8 @@
 <script type="text/javascript" src="{% static 'javascripts/planner/services/test-phases.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/planner/services/apps.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/planner/services/scopes.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/tracker/tracker.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/tracker/controllers/tracker.controller.js' %}"></script>
+
 
 {% endcompress %}
