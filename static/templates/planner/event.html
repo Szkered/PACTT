@@ -6,12 +6,12 @@
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 	  <h4>{{ event.date }} - {{ event.description }}</h4>
 	</div>
-
+	
 	<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 	  <a class="btn btn-md {{ vm.btn }} pull-right"
-	     href="/{{ vm.url }}/{{ event.id }}"
-	     ng-click="vm.redirect()"
-	     ng-show="vm.isAuthenticated">{{ vm.button }}</a>
+		  href="javascript:void(0)"
+		  ng-click="vm.redirect()"
+		  ng-show="vm.isAuthenticated">{{ vm.button }}</a>
 	</div>
 	
       </div>

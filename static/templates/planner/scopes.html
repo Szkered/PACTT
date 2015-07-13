@@ -17,14 +17,14 @@
         <td>{{ app.RTO }}</td>
         <td>{{ app.priority }}</td>
 	<td><md-checkbox ng-model="app.scoped"
-			 aria-label="scoped"
-			 ng-disabled="!vm.isAuthenticated"
-			 ng-click="vm.scopeToggle(app)">
+		    aria-label="scoped"
+		    ng-disabled="!vm.isAuthenticated"
+		    ng-click="vm.scopeToggle(app)">
 	</md-checkbox></td>
 	<td><textarea class="form-control"
-		      ng-model="app.descope_reason"
-		      ng-required="!app.scoped"
-		      ng-disabled="app.scoped"></td>
+		    ng-model="app.descope_reason"
+		    ng-required="!app.scoped"
+		    ng-disabled="app.scoped"></td>
       </tr>
     </tbody>
   </table>

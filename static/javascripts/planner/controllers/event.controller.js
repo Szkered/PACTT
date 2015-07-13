@@ -11,18 +11,28 @@
     function EventController($scope, $location, Authentication) {
 	var vm = this;
 
-	vm.isAuthenticated = Authentication.isAuthenticated();
-	vm.isAuthenticated = true;
 	vm.redirect = redirect;
+	vm.isAuthenticated = Authentication.isAuthenticated();
+	vm.lob = null;
+	if(vm.isAuthenticated) {
+	    vm.lob = Authentication.getAuthenticatedAccount().lob;
+	}
 
-	if(new Date() > new Date($scope.event.date)) {
-	    vm.url = 'tracker'
-	    vm.button = 'Track';
-	    vm.btn = 'btn-success';
-	} else {
+
+	if(new Date() < new Date($scope.event.date)) {
 	    vm.url = 'planner';
 	    vm.button = 'Plan';
 	    vm.btn = 'btn-primary';
+	} else {
+	    if(vm.lob === 'P') {
+		vm.url = 'executor';
+		vm.button = 'execute';
+		vm.btn = 'btn-success'	
+	    } else {
+		vm.url = 'tracker'
+		vm.button = 'Track';
+		vm.btn = 'btn-success';
+	    }
 	}
 	
 	function redirect() {

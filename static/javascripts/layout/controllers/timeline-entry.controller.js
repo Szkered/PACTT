@@ -5,11 +5,14 @@
 	.module('PACTT.layout.controllers')
 	.controller('TimelineEntryController', TimelineEntryController);
     
-    TimelineEntryController.$inject = ['$scope', '$interval', '$rootScope', 'TestPhases'];
+    TimelineEntryController.$inject = [
+	'$scope', '$interval', '$rootScope', 'TestPhases', 'Authentication'
+    ];
     
-    function TimelineEntryController($scope, $interval, $rootScope, TestPhases) {
+    function TimelineEntryController($scope, $interval, $rootScope, TestPhases, Authentication) {
 	var vm = this;
 
+	vm.isAuthenticated = Authentication.isAdmin();
 	vm.isWaiting = isWaiting;
 	vm.isCurrent = isCurrent;
 	vm.isSuccess = isSuccess;

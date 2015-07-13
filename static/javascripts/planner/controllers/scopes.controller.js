@@ -11,7 +11,7 @@
     function ScopesController($scope, Authentication, ngDialog) {
 	var vm = this;
 
-	vm.isAuthenticated = Authentication.isAuthenticated();
+	vm.isAuthenticated = Authentication.isAdmin();
 	vm.scopeToggle = scopeToggle;
 
 	
@@ -21,6 +21,5 @@
 		app.descope_reason = "";
 	    }
 	}
-    }
-    
+    }    
 })();

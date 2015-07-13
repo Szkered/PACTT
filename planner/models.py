@@ -17,7 +17,8 @@ class TestPhase(models.Model):
     description = models.CharField(max_length=50)
     LOB_TYPE = (
         ('G', 'GTRM'),
-        ('C', 'CIB')
+        ('C', 'CIB TRM'),
+        ('P', 'PM')
     )
     lob = models.CharField(max_length=1, choices=LOB_TYPE, blank=True)
 
@@ -38,7 +39,8 @@ class Scope(models.Model):
     descope_reason = models.CharField(max_length=50, blank=True)
 
 class Assignment(models.Model):
-    app = models.ForeignKey(App)
+    # app = models.ForeignKey(App)
+    scope = models.ForeignKey(Scope)
     account = models.ForeignKey(Account)
     description = models.CharField(max_length=50)
 

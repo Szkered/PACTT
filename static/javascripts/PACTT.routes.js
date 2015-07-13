@@ -37,6 +37,10 @@
 	    controller: 'TrackerController',
 	    controllerAs: 'vm',
 	    templateUrl: '/static/templates/tracker/tracker.html'
+	}).when('/executor/:event_id', {
+	    controller: 'ExecutorController',
+	    controllerAs: 'vm',
+	    templateUrl: '/static/templates/executor/executor.html'
 	}).otherwise('/');
     }
 })();

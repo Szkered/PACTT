@@ -47,3 +47,13 @@ class EventScopeViewSet(viewsets.ViewSet):
         serializer = self.serializer_class(queryset, many=True)
 
         return Response(serializer.data)
+    
+class AccountAssignmentsViewSet(viewsets.ModelViewSet):
+    queryset = Assignment.objects.select_related('account').all()
+    serializer_class = AssignmentSerializer
+
+    def list(self, request, account_sid=None):
+        queryset = self.queryset.filter(account__sid=account_sid)
+        serializer = self.serializer_class(queryset, many=True)
+
+        return Response(serializer.data)

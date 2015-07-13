@@ -16,7 +16,8 @@
 	    logout: logout,
 	    register: register,
 	    setAuthenticatedAccount: setAuthenticatedAccount,
-	    unauthenticate: unauthenticate
+	    unauthenticate: unauthenticate,
+	    isAdmin: isAdmin
 	};
 
 	return Authentication;
@@ -89,6 +90,14 @@
 
 	function unauthenticate() {
 	    $cookies.remove('authenticatedAccount');
+	}
+
+	function isAdmin() {
+	    if(getAuthenticatedAccount()){
+		var lob = getAuthenticatedAccount().lob;
+		return lob === 'C' || lob === 'G';	
+	    }
+	    return false;
 	}
     }
 })();

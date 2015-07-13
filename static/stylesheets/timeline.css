@@ -125,7 +125,7 @@
 }
 .timeline-badge.primary {
     /* background-color: #2e6da4 !important; */
-    background-color: #607D8B !important;
+    background-color: #212121 !important;
 }
 .timeline-badge.success {
     /* background-color: #3f903f !important; */
@@ -147,7 +147,7 @@
     background-color: white !important;
 }
 .timeline-badge.waiting {
-    background-color: #607D8B !important;
+    background-color: #212121 !important;
 }
 .timeline-title {
     margin-top: 0;

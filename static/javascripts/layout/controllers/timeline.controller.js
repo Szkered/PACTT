@@ -14,5 +14,7 @@
 	$scope.$on('test-phases.loaded', function (event, testPhases) {
 	    $scope.testPhases = testPhases;
 	})
+
+	
     }
 })();

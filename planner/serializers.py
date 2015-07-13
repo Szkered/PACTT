@@ -36,3 +36,11 @@ class ScopeSerializer(serializers.ModelSerializer):
         model = Scope
         fields = {'id', 'event', 'app', 'scoped', 'descope_reason'}
         read_only_field = {'id'}   
+
+
+class AssignmentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Assignment
+        fields = {'id', 'scope', 'account', 'description'}
+        read_only_field = {'id', 'scope', 'account', 'description'}

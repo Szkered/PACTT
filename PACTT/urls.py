@@ -19,6 +19,7 @@ accounts_router = routers.NestedSimpleRouter(
     router, r'accounts', lookup='account'
 )
 accounts_router.register(r'posts', AccountPostsViewSet)
+accounts_router.register(r'assignments', AccountAssignmentsViewSet)
 
 events_router = routers.NestedSimpleRouter(
     router, r'events', lookup='event'

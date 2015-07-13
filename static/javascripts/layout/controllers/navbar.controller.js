@@ -22,6 +22,7 @@
 	    $scope.$on('subheader', function(event, subtitle) {
 	    	vm.subheader = ' | ' + subtitle;
 	    });
+
 	}
 
 	function logout() {

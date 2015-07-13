@@ -22,6 +22,10 @@
 	vm.apps = [];
 	vm.editMode = false;
 
+	vm.querySearch = querySearch;
+	vm.searchTextChange = searchTextChange;
+	vm.selectedItemChange = selectedItemChange;
+
 	activate();
 
 	
@@ -47,6 +51,16 @@
 
 	    function appsSuccessFn(data, status, headers, config) {
 		vm.apps = data.data;
+		vm.appsAll = data.data;
+		vm.appsSearch = vm.apps.map( function (app) {
+		    return {
+			value: app.name.toLowerCase(),
+			display: app.name,
+			app: app
+		    }
+		});
+		
+		
 		Scopes.get(event_id).then(scopesSuccessFn, errorFn);
 		
 		function scopesSuccessFn(data, status, headers, config) {
@@ -59,6 +73,31 @@
 
 	    function errorFn(data, status, headers, config) {
 		Snackbar.error(data.data.error);
+	    }
+	}
+
+	function querySearch (query) {
+	    return query ? vm.appsSearch.filter( createFilterFor(query) ) : vm.appsSearch;
+	}
+	
+	function createFilterFor(query) {
+	    var lowercaseQuery = angular.lowercase(query);
+	    return function filterFn(app) {
+		return (app.value.indexOf(lowercaseQuery) === 0);
+	    };
+	}
+
+	function searchTextChange(text) {
+	    console.log('Text changed to ' + text);
+	}
+	
+	function selectedItemChange(item) {
+	    console.log('Item changed to ' + JSON.stringify(item));
+	    if(item){
+		var i = vm.apps.indexOf(item.app);
+		vm.apps = [vm.apps[i]];
+	    } else {
+		vm.apps = vm.appsAll;
 	    }
 	}
     }

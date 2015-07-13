@@ -12,7 +12,8 @@
 	    controllerAs: 'vm',
 	    restrict: 'E',
 	    scope: {
-		apps: '='
+		apps: '=',
+		editMode: '='
 	    },
 	    templateUrl: '/static/templates/planner/scopes.html'
 	};

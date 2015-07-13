@@ -40,7 +40,8 @@ class Account(AbstractBaseUser):
     last_name = models.CharField(max_length=40, blank=True)
     LOB_TYPE = (
         ('G', 'GTRM'),
-        ('C', 'CIB TRM')
+        ('C', 'CIB TRM'),
+        ('P', 'PM')
     )
     lob = models.CharField(max_length=1, choices=LOB_TYPE, blank=True)
 

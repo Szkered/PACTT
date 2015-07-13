@@ -13,10 +13,11 @@
     
     function PlannerController(
 	$scope, $routeParams, Authentication, Snackbar, ngDialog, $rootScope,
-	Events, Testhases, Scopes, Apps, $location) {
+	Events, TestPhases, Scopes, Apps, $location) {
 	var vm = this;
 
-	vm.isAuthenticated = Authentication.isAuthenticated();
+	vm.isAuthenticated = Authentication.isAdmin();
+	
 	$scope.event_id = $routeParams.event_id;
 	
 	vm.test_phases = [];

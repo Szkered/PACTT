@@ -11,7 +11,8 @@
 	    'PACTT.posts',
 	    'PACTT.profiles',
 	    'PACTT.planner',
-	    'PACTT.tracker'
+	    'PACTT.tracker',
+	    'PACTT.executor'
 	]);
 
     angular

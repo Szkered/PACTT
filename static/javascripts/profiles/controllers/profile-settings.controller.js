@@ -65,6 +65,7 @@
 	}
 
 	function update() {
+	    console.log(JSON.stringify(vm.profile));
 	    Profile.update(vm.profile).then(profileSucessFn, profileErrorFn);
 	    
 	    function profileSucessFn(data, status, headers, config) {
