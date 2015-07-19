@@ -1,0 +1,7 @@
+<div class="row" ng-cloak>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div ng-repeat="event in vm.events | orderBy:'startTime' ">
+	<event event="event"></event>
+    </div>
+  </div>
+</div>

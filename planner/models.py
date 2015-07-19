@@ -37,23 +37,26 @@ class Scope(models.Model):
     app = models.ForeignKey(App)
     scoped = models.BooleanField(default=True)
     descope_reason = models.CharField(max_length=50, blank=True)
+    
+    class Meta:
+        unique_together = ('event', 'app')
+        ordering = ['app__id']
 
 class Assignment(models.Model):
-    # app = models.ForeignKey(App)
     scope = models.ForeignKey(Scope)
     account = models.ForeignKey(Account)
     description = models.CharField(max_length=50)
 
 class TestResult(models.Model):
     app = models.ForeignKey(App)
-    TestPhase = models.ForeignKey(TestPhase)
-    startTime = models.DateField()
-    endTime = models.DateField()
+    testPhase = models.ForeignKey(TestPhase)
+    startTime = models.TimeField()
+    endTime = models.TimeField()
     STATUS_TYPE = (
         ('C', 'Completed with No Issue'),
         ('I', 'Completed with Issue'),
         ('N', 'Not Yet Started'),
         ('F', 'Failed')
     )
-    status = models.CharField(max_length=1, choices=STATUS_TYPE)
-    comment = models.CharField(max_length=100)
+    status = models.CharField(max_length=1, choices=STATUS_TYPE, default='N')
+    comment = models.CharField(max_length=100, blank=True)

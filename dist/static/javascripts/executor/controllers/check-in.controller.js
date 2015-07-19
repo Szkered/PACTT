@@ -1,0 +1,1 @@
+!function(){"use strict";function o(o,n){function c(){o.closeThisDialog(),n.url("/"+o.url+"/"+o.event.id)}var e=this;e.checkIn=c}angular.module("PACTT.executor.controllers").controller("CheckInController",o),o.$inject=["$scope","$location"]}();

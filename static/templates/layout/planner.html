@@ -1,0 +1,22 @@
+<form role="form" ng-submit="vm.saveAndBack()">
+
+  <div class="col-xs-9 col-sm-7 col-md-5 col-lg-3">
+    <timeline test-phases="vm.test_phases"
+	    is-authenticated="vm.isAuthenticated"
+	    edit-mode="true">
+    </timeline>
+  </div>
+
+  <div class="col-xs-3 col-sm-5 col-md-7 col-lg-9">
+    <app-list apps="vm.apps"
+	    is-authenticated="vm.isAuthenticated"
+	    edit-mode="true">
+    </app-list>
+    <button class="btn btn-success btn-raised pull-right"
+	    type="submit"
+	    ng-show="vm.isAuthenticated">
+      Save and back
+    </button>
+  </div>
+  
+</form>

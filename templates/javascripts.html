@@ -19,58 +19,61 @@
 <script type="text/javascript" src="{% static 'bower_components/angular-material/angular-material.js' %}"></script>
 <script type="text/javascript" src="{% static 'bower_components/pubnub-angular/lib/pubnub-angular.js' %}"></script>
 <script type="text/javascript" src="{% static 'lib/snackbarjs/snackbar.min.js' %}"></script>
-<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+<script type="text/javascript" src="{% static 'lib/pubnub/pubnub.min.js' %}"></script>
 
 <script type="text/javascript" src="{% static 'javascripts/PACTT.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/PACTT.config.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/PACTT.routes.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/authentication/authentication.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/authentication/services/authentication.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/authentication/controllers/register.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/authentication/controllers/login.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/layout.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/controllers/navbar.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/controllers/index.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/controllers/timeline.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/controllers/timeline-entry.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/directives/timeline.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/directives/timeline-entry.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/layout/services/layout.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/posts/posts.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/posts/services/posts.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/posts/directives/posts.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/posts/directives/post.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/posts/controllers/posts.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/posts/controllers/new-post.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/utils/utils.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/utils/services/snackbar.service.js' %}"></script>
+
+<!-- <script type="text/javascript" src="{% static 'javascripts/posts/posts.module.js' %}"></script> -->
+<!-- <script type="text/javascript" src="{% static 'javascripts/posts/services/posts.service.js' %}"></script> -->
+<!-- <script type="text/javascript" src="{% static 'javascripts/posts/directives/posts.directive.js' %}"></script> -->
+<!-- <script type="text/javascript" src="{% static 'javascripts/posts/directives/post.directive.js' %}"></script> -->
+<!-- <script type="text/javascript" src="{% static 'javascripts/posts/controllers/posts.controller.js' %}"></script> -->
+<!-- <script type="text/javascript" src="{% static 'javascripts/posts/controllers/new-post.controller.js' %}"></script> -->
+
 <script type="text/javascript" src="{% static 'javascripts/profiles/profiles.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/profiles/services/profile.service.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/profiles/controllers/profile.controller.js' %}"></script>
 <script type="text/javascript" src="{% static 'javascripts/profiles/controllers/profile-settings.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/planner.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/controllers/events.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/controllers/event.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/controllers/planner.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/controllers/test-phases.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/controllers/test-phase.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/controllers/new-test-phase.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/controllers/edit-test-phase.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/controllers/scopes.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/directives/events.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/directives/event.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/directives/test-phases.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/directives/test-phase.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/directives/scopes.directive.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/services/events.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/services/test-phases.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/services/apps.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/planner/services/scopes.service.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/tracker/tracker.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/tracker/controllers/tracker.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/executor/executor.module.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/executor/controllers/executor.controller.js' %}"></script>
-<script type="text/javascript" src="{% static 'javascripts/executor/services/assignments.service.js' %}"></script>
 
+<script type="text/javascript" src="{% static 'javascripts/utils/utils.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/utils/services/snackbar.service.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/authentication/authentication.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/authentication/services/authentication.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/authentication/controllers/register.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/authentication/controllers/login.controller.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/layout/layout.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/navbar.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/index.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/planner.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/tracker.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/executor.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/layout/controllers/check-in.controller.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/timeline/timeline.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/timeline/controllers/new-test-phase.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/timeline/controllers/timeline.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/timeline/controllers/timeline-entry.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/timeline/directives/timeline.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/timeline/directives/timeline-entry.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/timeline/services/test-phases.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/timeline/services/test-results.service.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/apps/apps.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/apps/directives/app-list.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/apps/controllers/app-list.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/apps/services/apps.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/apps/services/scopes.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/apps/services/assignments.service.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'javascripts/events/events.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/events/controllers/events.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/events/controllers/event.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/events/directives/events.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/events/directives/event.directive.js' %}"></script>
+<script type="text/javascript" src="{% static 'javascripts/events/services/events.service.js' %}"></script>
 
 {% endcompress %}

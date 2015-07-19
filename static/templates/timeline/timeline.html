@@ -1,0 +1,16 @@
+<div class="container">
+  <ul class="timeline">
+    <li ng-repeat="testPhase in testPhases | orderBy:'startTime'">
+      <timeline-entry test-phase="testPhase" edit-mode="editMode">
+      </timeline-entry>
+    </li>
+    <li ng-if="editMode">
+      <div class="timeline-badge">
+	<a class="btn btn-primary btn-fab btn-raised mdi-content-add"
+		ng-show="isAuthenticated"
+		ng-click="vm.openAddDialog()"
+		href="javascript:void(0)"></a>
+      </div>
+    </li>
+  </ul>
+</div>

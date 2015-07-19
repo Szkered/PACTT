@@ -12,17 +12,16 @@
 	var vm = this;
 	
 	vm.logout = logout;
-
-	console.log('[DEBUG] in nav ctrl: ' + $scope.subheader);
+	vm.subheader = ' ';
 
 	activate();
 	
 
 	function activate() {
+
 	    $scope.$on('subheader', function(event, subtitle) {
 	    	vm.subheader = ' | ' + subtitle;
 	    });
-
 	}
 
 	function logout() {

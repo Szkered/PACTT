@@ -3,17 +3,9 @@
 
     angular
 	.module('PACTT.layout', [
-	    'PACTT.layout.services',
-	    'PACTT.layout.controllers',
-	    'PACTT.layout.directives'
+	    'PACTT.layout.controllers'
 	]);
 
     angular
 	.module('PACTT.layout.controllers', ['ngMaterial']);
-
-    angular
-	.module('PACTT.layout.services', []);
-
-    angular
-	.module('PACTT.layout.directives', []);
 })();

@@ -1,0 +1,1 @@
+!function(){"use strict";function o(o,n,t){function i(){console.log("[INFO] activate LoginController"),t.isAuthenticated()&&o.url("/")}function l(){t.login(c.sid,c.password)}var c=this;c.login=l,i()}angular.module("PACTT.authentication.controllers").controller("LoginController",o),o.$inject=["$location","$scope","Authentication"]}();

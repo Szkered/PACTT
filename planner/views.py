@@ -17,7 +17,7 @@ class TestPhaseViewSet(viewsets.ModelViewSet):
     serializer_class = TestPhaseSerializer
 
     
-class EventTestPhaseViewSet(viewsets.ViewSet):
+class EventTestPhasesViewSet(viewsets.ViewSet):
     queryset = TestPhase.objects.order_by('startTime').select_related('Event').all()
     serializer_class = TestPhaseSerializer
 
@@ -38,7 +38,7 @@ class ScopeViewSet(viewsets.ModelViewSet):
     serializer_class = ScopeSerializer
 
 
-class EventScopeViewSet(viewsets.ViewSet):
+class EventScopesViewSet(viewsets.ViewSet):
     queryset = Scope.objects.order_by('app__aid').select_related('Event').all()
     serializer_class = ScopeSerializer
 
@@ -54,6 +54,20 @@ class AccountAssignmentsViewSet(viewsets.ModelViewSet):
 
     def list(self, request, account_sid=None):
         queryset = self.queryset.filter(account__sid=account_sid)
+        serializer = self.serializer_class(queryset, many=True)
+
+        return Response(serializer.data)
+
+class TestResultViewSet(viewsets.ModelViewSet):
+    queryset = TestResult.objects.order_by('testPhase')
+    serializer_class = TestResultSerializer
+
+class TestPhaseTestResultsViewSet(viewsets.ModelViewSet):
+    queryset = TestResult.objects.order_by('testPhase').select_related('TestPhase').all()
+    serializer_class = TestResultSerializer
+    
+    def list(self, request, testPhase_pk=None):
+        queryset = self.queryset.filter(testPhase__pk=testPhase_pk)
         serializer = self.serializer_class(queryset, many=True)
 
         return Response(serializer.data)

@@ -39,8 +39,16 @@ class ScopeSerializer(serializers.ModelSerializer):
 
 
 class AssignmentSerializer(serializers.ModelSerializer):
+    scope = ScopeSerializer(read_only=True)
 
     class Meta:
         model = Assignment
         fields = {'id', 'scope', 'account', 'description'}
-        read_only_field = {'id', 'scope', 'account', 'description'}
+        # read_only_field = {'id', 'scope', 'account', 'description'}
+
+class TestResultSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TestResult
+        fields = {'id', 'app', 'testPhase', 'startTime', 'endTime', 'status', 'comment'}
+        read_only_field = {'id', 'app', 'testPhase'}

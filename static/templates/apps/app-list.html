@@ -1,0 +1,78 @@
+<md-autocomplete
+	md-selected-item="vm.selectedItem"
+	md-search-text="vm.searchText"
+	md-search-text-change="vm.searchTextChange(vm.searchText)"
+	md-items="item in vm.querySearch(vm.searchText)"
+	md-selected-item-change="vm.selectedItemChange(item)"
+	md-item-text="item.display"
+	md-min-length="0"
+	autofocus="false"
+	placeholder="Enter application name">
+  <md-item-template>
+    <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.display}}</span>
+  </md-item-template>
+  <md-not-found>
+    No matches found for "{{vm.searchText}}".
+  </md-not-found>
+</md-autocomplete>
+
+<!-- edit mode -->
+<div class="panel">
+  <table class="table table-striped table-hover" ng-if="editMode">
+    <thead>
+      <tr>
+        <th>AID</th>
+        <th>Name</th>
+        <th>RTO</th>
+        <th>Priority</th>
+	<th>Scoped</th>
+	<th>Descope Reason</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="app in apps">
+        <td>{{ app.aid }}</td>
+        <td>{{ app.name }}</td>
+        <td>{{ app.RTO }}</td>
+        <td>{{ app.priority }}</td>
+	<td><md-checkbox ng-model="app.scoped"
+		    aria-label="scoped"
+		    ng-disabled="!isAuthenticated"
+		    ng-click="vm.scopeToggle(app)">
+	</md-checkbox></td>
+	<td><textarea class="form-control"
+		    ng-model="app.descope_reason"
+		    ng-required="!app.scoped"
+		    ng-disabled="app.scoped"></textarea></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- view mode -->
+  <table class="table table-striped table-hover" ng-if="!editMode">
+
+    <thead>
+      <tr>
+        <th>AID</th>
+        <th>Name</th>
+        <th>RTO</th>
+        <th>Priority</th>
+	<th>Test Phase</th>
+	<th>Status</th>
+	<th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="app in apps">
+        <td>{{ app.aid }}</td>
+        <td>{{ app.name }}</td>
+        <td>{{ app.RTO }}</td>
+        <td>{{ app.priority }}</td>
+	<td>test</td>
+	<td>{{ app.RTO }}</td>
+    	<td><textarea class="form-control"
+    		    ng-model="app.comments"></textarea></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

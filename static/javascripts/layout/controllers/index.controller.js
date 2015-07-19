@@ -5,15 +5,15 @@
 	.module('PACTT.layout.controllers')
 	.controller('IndexController', IndexController);
 
-    IndexController.$inject = ['$rootScope', '$scope', 'Authentication', 'Posts',
-			       'Snackbar', 'Events'];
+    IndexController.$inject = [
+	'$rootScope', '$scope', 'Authentication', 'Snackbar', 'Events'
+    ];
 
 
-    function IndexController($rootScope, $scope, Authentication, Posts, Snackbar, Events) {
+    function IndexController($rootScope, $scope, Authentication, Snackbar, Events) {
 	var vm = this;
 
 	vm.isAuthenticated = Authentication.isAuthenticated();
-	// vm.posts = [];
 	vm.events = [];
 
 	activate();
@@ -21,20 +21,8 @@
 	
 	function activate() {
 	    $rootScope.$broadcast('subheader', 'MEPC');
-	    // Posts.all().then(postsSuccessFn, errorFn);
-	    Events.all().then(eventsSuccessFn, errorFn);
-
-	    // $scope.$on('post.created', function (event, post) {
-	    // 	vm.posts.unshift(post);
-	    // });
-
-	    // $scope.$on('post.created.error', function () {
-	    // 	vm.posts.shift();
-	    // });
 	    
-	    // function postsSuccessFn(data, status, headers, config) {
-	    // 	vm.posts = data.data;
-	    // }
+	    Events.all().then(eventsSuccessFn, errorFn);
 
 	    function eventsSuccessFn(data, status, headers, config) {
 		vm.events = data.data;

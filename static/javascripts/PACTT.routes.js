@@ -32,15 +32,15 @@
 	}).when('/planner/:event_id', {
 	    controller: 'PlannerController',
 	    controllerAs: 'vm',
-	    templateUrl: '/static/templates/planner/planner.html'
+	    templateUrl: '/static/templates/layout/planner.html'
 	}).when('/tracker/:event_id', {
 	    controller: 'TrackerController',
 	    controllerAs: 'vm',
-	    templateUrl: '/static/templates/tracker/tracker.html'
+	    templateUrl: '/static/templates/layout/tracker.html'
 	}).when('/executor/:event_id', {
 	    controller: 'ExecutorController',
 	    controllerAs: 'vm',
-	    templateUrl: '/static/templates/executor/executor.html'
+	    templateUrl: '/static/templates/layout/executor.html'
 	}).otherwise('/');
     }
 })();
