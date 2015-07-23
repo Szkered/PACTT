@@ -31,6 +31,10 @@
 
 	activate();
 
+	$scope.$on('status.updated', function(event, status) {
+	    console.log('hi');
+	    activate();
+	});
 
 	function activate() {
 	    TestResults.get_from_test_phase(test_phase.id).then(testResultsSuccessFn, errorFn);

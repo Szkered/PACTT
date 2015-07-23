@@ -63,7 +63,7 @@ class TestResultViewSet(viewsets.ModelViewSet):
     serializer_class = TestResultSerializer
 
 class TestPhaseTestResultsViewSet(viewsets.ModelViewSet):
-    queryset = TestResult.objects.order_by('testPhase').select_related('TestPhase').all()
+    queryset = TestResult.objects.order_by('testPhase__startTime').select_related('TestPhase').all()
     serializer_class = TestResultSerializer
     
     def list(self, request, testPhase_pk=None):

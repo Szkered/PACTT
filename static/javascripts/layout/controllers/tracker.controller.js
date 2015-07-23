@@ -85,10 +85,27 @@
 	}
 
 	function getCurrentTestResult(test_results) {
-	    // status based logic
-	    test_results = test_results.filter(function(test_result){
-		return test_result.status == 'N';
+	    if(!test_results) return;
+	    
+	    // time based logic
+	    test_results = test_results.filter(function(test_result) {
+	    	var date = vm.event.date
+	    	var st = test_result.testPhase.startTime;
+	    	var et = test_result.testPhase.endTime;
+	    	st = new Date(date + ' ' + st);
+	    	et = new Date(date + ' ' + et );
+
+	    	// harcoded
+	    	// var now = new Date();
+	    	var now = new Date(date + ' 5:00')
+
+	    	return st <= now && now <= et;
 	    });
+	    
+	    // status based logic
+	    // test_results = test_results.filter(function(test_result){
+	    // 	return test_result.status == 'N';
+	    // });
 
 	    return test_results[0];
 	}

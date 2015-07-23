@@ -14,3 +14,20 @@ table.exec > tbody > tr.F {
     color: white;
     font-weight: bold;
 }
+
+.navbar.toolbar{
+    margin-top: 20px;
+    margin-buttom: 0px;
+}
+
+ul.dropdown-menu > li.C > a {
+    color: #4CAF50 !important;
+}
+
+ul.dropdown-menu > li.I > a {
+    color: #FF9800 !important;
+}
+
+ul.dropdown-menu > li.F > a {
+    color: #F44336 !important;
+}

@@ -1,4 +1,59 @@
-<md-autocomplete
+<!-- tool bar -->
+<div class="navbar toolbar navbar-default" ng-if="execMode">
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+
+    <!-- action buttons -->
+    <ul class="nav navbar-nav">
+      <li>
+	<a href="javascript:void(0)" ng-click="vm.toggleAssigned()">
+	  <div class="mdi-navigation-menu"></div>
+	  <md-tooltip>
+	    {{ btn }}
+	  </md-tooltip>
+	</a>
+      </li>
+    </ul>
+    
+    <!-- finish phase -->
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+	<a href="javascript:void(0)" ng-click="vm.sendComments()">
+	  <div class="mdi-editor-mode-comment"></div>
+	  <md-tooltip>
+	    Send Comments
+	  </md-tooltip>
+	</a>
+      </li>
+      <li class="dropdown">
+        <a href="javascript:void(0)"
+		data-target="#"
+		class="dropdown-toggle"
+		data-toggle="dropdown">
+	  <div class="mdi-action-done"></div><b class="caret"></b>
+	  <md-tooltip>
+	    Complete Phase
+	  </md-tooltip>
+	</a>
+        <ul class="dropdown-menu">
+	  <li class="dropdown-header">Choose completion status</li>
+	  <li class="divider"></li>
+          <li class="C"><a href="javascript:void(0)"
+				ng-click="vm.updateStatus('C')">Completed without issue</a></li>
+          <li class="I"><a href="javascript:void(0)"
+				ng-click="vm.updateStatus('I')">Completed with issue</a></li>
+          <li class="F"><a href="javascript:void(0)"
+				ng-click="vm.updateStatus('F')">Failed</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+  </div>
+</div>
+
+<!-- search bar -->
+<md-autocomplete flex-required
+	placeholder="Enter application name"
+	md-input-name="autocompleteField"
 	md-selected-item="vm.selectedItem"
 	md-search-text="vm.searchText"
 	md-search-text-change="vm.searchTextChange(vm.searchText)"
@@ -6,8 +61,7 @@
 	md-selected-item-change="vm.selectedItemChange(item)"
 	md-item-text="item.display"
 	md-min-length="0"
-	ng-focus="false"
-	placeholder="Enter application name">
+	ng-focus="false">
   <md-item-template>
     <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.display}}</span>
   </md-item-template>
@@ -16,8 +70,35 @@
   </md-not-found>
 </md-autocomplete>
 
-<!-- edit mode -->
 <div class="panel">
+  <!-- table - view mode -->
+  <table class="table table-striped table-hover exec" ng-if="!editMode">
+    <thead>
+      <tr>
+        <th>AID</th>
+        <th>Name</th>
+        <th>RTO</th>
+        <th>Priority</th>
+	<th>Test Phase</th>
+	<th>Status</th>
+	<th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="app in apps"
+	      ng-class="app.current.status">
+        <td>{{ app.aid }}</td>
+        <td>{{ app.name }}</td>
+        <td>{{ app.RTO }}</td>
+        <td>{{ app.priority }}</td>
+	<td>{{ app.current.testPhase.description }}</td>
+	<td>{{ vm.statusType[app.current.status] }}</td>
+	<td>{{ app.current.comment }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- table - edit mode -->
   <table class="table table-striped table-hover" ng-if="editMode">
     <thead>
       <tr>
@@ -44,41 +125,6 @@
 		    ng-model="app.descope_reason"
 		    ng-required="!app.scoped"
 		    ng-disabled="app.scoped"></textarea></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- view mode -->
-  <div ng-if="execMode">
-      <button class="btn btn-primary"
-	    ng-click="vm.toggleAssigned()">
-      {{ btn }}
-      </button>
-  </div>
-  
-   <table class="table table-striped table-hover exec" ng-if="!editMode">
-    <thead>
-      <tr>
-        <th>AID</th>
-        <th>Name</th>
-        <th>RTO</th>
-        <th>Priority</th>
-	<th>Test Phase</th>
-	<th>Status</th>
-	<th>Comments</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="app in apps"
-	      ng-class="app.current.status">
-        <td>{{ app.aid }}</td>
-        <td>{{ app.name }}</td>
-        <td>{{ app.RTO }}</td>
-        <td>{{ app.priority }}</td>
-	<td>{{ app.current.testPhase.description }}</td>
-	<td>{{ vm.statusType[app.current.status] }}</td>
-    	<td><textarea class="form-control"
-    		    ng-model="app.current.comment"></textarea></td>
       </tr>
     </tbody>
   </table>

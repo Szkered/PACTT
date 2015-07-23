@@ -3,8 +3,8 @@
 	ng-class="testPhase.state"
 	ng-if="!editMode">
   <div class="glyphicon glyphicon-ok"
-    ng-if="vm.isPassed()"
-    ng-click="vm.test()">
+	  ng-if="vm.isPassed()"
+	  ng-click="vm.test()">
     <md-tooltip>
       see result {{ testPhase.description }} phase
     </md-tooltip>
@@ -21,11 +21,7 @@
     </md-tooltip>
   </i>
   <i class="glyphicon glyphicon-option-vertical"
-	  ng-if="vm.isWaiting()"
-	  ng-click="vm.test()">
-    <md-tooltip>
-      see result for {{ testPhase.description }} phase
-    </md-tooltip>
+	  ng-if="vm.isWaiting()">
   </i>
 </div>
 
@@ -67,7 +63,12 @@
       </span>
     </p>
     <p class="red"
-	    ng-hide="testPhase.failed===0">>{{ testPhase.failed }} Failed to complete</p>
+	    ng-hide="testPhase.failed===0">
+      Failed to complete
+      <span class="badge">
+	{{ testPhase.failed }}
+      </span>
+    </p>
     <p ng-if="vm.isCurrent()">{{ vm.timeDiff(testPhase.diff) }}</p>
   </div>
 </div>

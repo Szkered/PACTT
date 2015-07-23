@@ -42,7 +42,6 @@
 	}
 	
 	function submit() {
-
 	    $rootScope.$broadcast('test-phase.created', {
 	    	description: vm.description,
 	    	startTime: vm.startTime,

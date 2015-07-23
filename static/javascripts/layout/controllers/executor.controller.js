@@ -120,7 +120,7 @@
 
 	    	// harcoded
 	    	// var now = new Date();
-	    	var now = new Date(date + ' 5:01')
+	    	var now = new Date(date + ' 5:00')
 
 	    	return st <= now && now <= et;
 	    });

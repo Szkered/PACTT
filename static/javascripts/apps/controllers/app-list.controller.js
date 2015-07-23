@@ -5,17 +5,24 @@
 	.module('PACTT.apps.controllers')
 	.controller('AppListController', AppListController);
 
-    AppListController.$inject = ['$scope', '$routeParams'];
+    AppListController.$inject = [
+	'$scope', '$routeParams', '$location', 'ngDialog', 'TestResults', 'Snackbar',
+	'$rootScope'
+    ];
 
 
-    function AppListController($scope, $routeParams) {
+    function AppListController(
+	$scope, $routeParams, $location, ngDialog, TestResults, Snackbar, $rootScope) {
 	var vm = this;
 
+	vm.url = $location.url();
 	vm.scopeToggle = scopeToggle;
 	vm.querySearch = querySearch;
 	vm.searchTextChange = searchTextChange;
 	vm.selectedItemChange = selectedItemChange;
 	vm.toggleAssigned = toggleAssigned;
+	vm.sendComments = sendComments;
+	vm.updateStatus = updateStatus;
 	vm.show_all = false;
 
 	vm.statusType = {
@@ -28,6 +35,7 @@
 	// bypass
 	$scope.$on('apps.assigned.loaded', function (event, app) {
 	    vm.apps_assigned = [app];
+	    $scope.apps_assigned = app;
 	    // $scope.apps = apps;
 	    // $scope.btn = 'See all Apps'
 	    console.log('app loaded');
@@ -47,13 +55,35 @@
 	    console.log('apps loaded');
 	});
 
+	function updateStatus(status) {
+	    var test_result = $scope.apps_assigned.current;
+	    var test_phase = test_result.testPhase;
+	    test_result.testPhase = test_phase.id;
+	    test_result.status = status;
+	    TestResults.update(test_result).then(function(data) {
+		Snackbar.show('Status updated!');
+		test_result.testPhase = test_phase;
+	    }, errorFn);
+	    $rootScope.$broadcast('status.updated', status);
+	}
+
+	function sendComments() {
+	    ngDialog.open({
+		template: '/static/templates/apps/send-comments.html',
+		controller: 'SendCommentsController as vm',
+		scope: $scope
+	    });
+	}
+
 	function toggleAssigned() {
 	    if(vm.show_all) {
 		$scope.btn = 'See my assigned Apps'
 		$scope.apps = vm.appsAll;
+		$rootScope.$broadcast('subheader.toggle', true);
 	    } else {
 		$scope.btn = 'See all Apps'
-		$scope.apps = vm.apps_assigned;	
+		$scope.apps = vm.apps_assigned;
+		$rootScope.$broadcast('subheader.toggle', false);
 	    }
 	    vm.show_all = !vm.show_all;
 	}
@@ -88,6 +118,10 @@
 	    } else {
 		$scope.apps = vm.appsAll;
 	    }
+	}
+	
+	function errorFn(data, status, headers, config) {
+	    Snackbar.error(data.data.error);
 	}
     }    
 })();

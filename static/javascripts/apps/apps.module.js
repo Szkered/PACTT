@@ -9,7 +9,7 @@
 	]);
 
     angular
-	.module('PACTT.apps.controllers', ['ngMaterial']);
+	.module('PACTT.apps.controllers', ['ngMaterial', 'ngDialog']);
 
     angular
 	.module('PACTT.apps.directives', []);

@@ -7,5 +7,5 @@
 	]);
 
     angular
-	.module('PACTT.layout.controllers', ['ngMaterial']);
+	.module('PACTT.layout.controllers', ['ngMaterial', 'xeditable']);
 })();
