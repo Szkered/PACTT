@@ -127,15 +127,15 @@
     /* background-color: #2e6da4 !important; */
     background-color: #212121 !important;
 }
-.timeline-badge.success {
+.timeline-badge.passed.green {
     /* background-color: #3f903f !important; */
     background-color: #4CAF50 !important;
 }
-.timeline-badge.warning {
+.timeline-badge.passed.amber {
     /* background-color: #f0ad4e !important; */
     background-color: #FF9800 !important;
 }
-.timeline-badge.danger {
+.timeline-badge.passed.red {
     /* background-color: #d9534f !important; */
     background-color: #F44336 !important;
 }
@@ -156,6 +156,16 @@
 .timeline-body > p,
 .timeline-body > ul {
     margin-bottom: 0;
+}
+
+.timeline-body > p.green {
+    color: #4CAF50 !important;
+}
+.timeline-body > p.amber {
+    color: #FF9800 !important;
+}
+.timeline-body > p.red {
+    color: #F44336 !important;
 }
 .timeline-body > p + p {
     margin-top: 5px;

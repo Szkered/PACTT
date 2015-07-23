@@ -26,6 +26,7 @@ events_router = routers.NestedSimpleRouter(
     router, r'events', lookup='event'
 )
 events_router.register(r'test_phases', EventTestPhasesViewSet)
+events_router.register(r'test_results', EventTestResultsViewSet)
 
 scopes_router = routers.NestedSimpleRouter(
     router, r'events', lookup='event'

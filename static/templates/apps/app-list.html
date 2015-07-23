@@ -6,7 +6,7 @@
 	md-selected-item-change="vm.selectedItemChange(item)"
 	md-item-text="item.display"
 	md-min-length="0"
-	autofocus="false"
+	ng-focus="false"
 	placeholder="Enter application name">
   <md-item-template>
     <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.display}}</span>
@@ -49,8 +49,14 @@
   </table>
 
   <!-- view mode -->
-  <table class="table table-striped table-hover" ng-if="!editMode">
-
+  <div ng-if="execMode">
+      <button class="btn btn-primary"
+	    ng-click="vm.toggleAssigned()">
+      {{ btn }}
+      </button>
+  </div>
+  
+   <table class="table table-striped table-hover exec" ng-if="!editMode">
     <thead>
       <tr>
         <th>AID</th>
@@ -63,16 +69,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="app in apps">
+      <tr ng-repeat="app in apps"
+	      ng-class="app.current.status">
         <td>{{ app.aid }}</td>
         <td>{{ app.name }}</td>
         <td>{{ app.RTO }}</td>
         <td>{{ app.priority }}</td>
-	<td>test</td>
-	<td>{{ app.RTO }}</td>
+	<td>{{ app.current.testPhase.description }}</td>
+	<td>{{ vm.statusType[app.current.status] }}</td>
     	<td><textarea class="form-control"
-    		    ng-model="app.comments"></textarea></td>
+    		    ng-model="app.current.comment"></textarea></td>
       </tr>
     </tbody>
   </table>
+
 </div>

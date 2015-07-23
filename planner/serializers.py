@@ -35,8 +35,15 @@ class ScopeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Scope
         fields = {'id', 'event', 'app', 'scoped', 'descope_reason'}
-        read_only_field = {'id'}   
+        read_only_field = {'id'}
 
+class ScopeSerializerNested(serializers.ModelSerializer):
+    app = AppSerializer(read_only=True)
+    
+    class Meta:
+        model = Scope
+        fields = {'id', 'event', 'app', 'scoped', 'descope_reason'}
+        read_only_field = {'id'}
 
 class AssignmentSerializer(serializers.ModelSerializer):
     scope = ScopeSerializer(read_only=True)
@@ -46,8 +53,24 @@ class AssignmentSerializer(serializers.ModelSerializer):
         fields = {'id', 'scope', 'account', 'description'}
         # read_only_field = {'id', 'scope', 'account', 'description'}
 
+class AssignmentSerializerNested(serializers.ModelSerializer):
+    scope = ScopeSerializerNested(read_only=True)
+
+    class Meta:
+        model = Assignment
+        fields = {'id', 'scope', 'account', 'description'}
+
 class TestResultSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = TestResult
+        fields = {'id', 'app', 'testPhase', 'startTime', 'endTime', 'status', 'comment'}
+        read_only_field = {'id', 'app', 'testPhase'}
+
+        
+class TestResultSerializerNested(serializers.ModelSerializer):
+    testPhase = TestPhaseSerializer(read_only=True)
+    
     class Meta:
         model = TestResult
         fields = {'id', 'app', 'testPhase', 'startTime', 'endTime', 'status', 'comment'}

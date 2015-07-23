@@ -50,7 +50,7 @@ class EventScopesViewSet(viewsets.ViewSet):
     
 class AccountAssignmentsViewSet(viewsets.ModelViewSet):
     queryset = Assignment.objects.select_related('account').all()
-    serializer_class = AssignmentSerializer
+    serializer_class = AssignmentSerializerNested
 
     def list(self, request, account_sid=None):
         queryset = self.queryset.filter(account__sid=account_sid)
@@ -68,6 +68,16 @@ class TestPhaseTestResultsViewSet(viewsets.ModelViewSet):
     
     def list(self, request, testPhase_pk=None):
         queryset = self.queryset.filter(testPhase__pk=testPhase_pk)
+        serializer = self.serializer_class(queryset, many=True)
+
+        return Response(serializer.data)
+
+class EventTestResultsViewSet(viewsets.ModelViewSet):
+    queryset = TestResult.objects.order_by('testPhase__startTime').select_related('event').all()
+    serializer_class = TestResultSerializerNested
+    
+    def list(self, request, event_pk=None):
+        queryset = self.queryset.filter(testPhase__event__pk=event_pk)
         serializer = self.serializer_class(queryset, many=True)
 
         return Response(serializer.data)

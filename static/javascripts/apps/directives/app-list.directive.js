@@ -15,7 +15,8 @@
 		apps: '=',
 		app: '=',
 		isAuthenticated: '=',
-		editMode: '='
+		editMode: '=',
+		execMode: '='
 	    },
 	    templateUrl: '/static/templates/apps/app-list.html'
 	};

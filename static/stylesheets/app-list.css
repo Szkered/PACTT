@@ -1,0 +1,16 @@
+table.exec > tbody > tr.C {
+    background-color: #4CAF50 !important;
+    color: white;
+    font-weight: bold;
+}
+
+table.exec > tbody > tr.I {
+    background-color: #FF9800 !important;
+    color: white;
+    font-weight: bold;
+}
+table.exec > tbody > tr.F {
+    background-color: #F44336 !important;
+    color: white;
+    font-weight: bold;
+}
