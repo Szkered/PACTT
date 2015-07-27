@@ -15,6 +15,24 @@ table.exec > tbody > tr.F {
     font-weight: bold;
 }
 
+table.report > tbody > tr > td.C {
+    background-color: #4CAF50 !important;
+    color: white;
+    font-weight: bold;
+}
+
+table.report > tbody > tr > td.I {
+    background-color: #FF9800 !important;
+    color: white;
+    font-weight: bold;
+}
+
+table.report > tbody > tr > td.F {
+    background-color: #F44336 !important;
+    color: white;
+    font-weight: bold;
+}
+
 .navbar.toolbar{
     margin-top: 20px;
     margin-buttom: 0px;

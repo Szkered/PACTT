@@ -9,17 +9,17 @@
       see result {{ testPhase.description }} phase
     </md-tooltip>
   </div>
-  <i ng-click="vm.test()">
+  <div ng-click="vm.test()"
+	  ng-if="vm.isCurrent()">
     <md-progress-circular md-mode="determinate"
-	    ng-if="vm.isCurrent()"
 	    class="md-accent"
 	    value="{{ testPhase.timer }}">
-
     </md-progress-circular>
+    <div class="current">{{ testPhase.timer }}%</div>
     <md-tooltip>
       see result for {{ testPhase.description }} phase
     </md-tooltip>
-  </i>
+  </div>
   <i class="glyphicon glyphicon-option-vertical"
 	  ng-if="vm.isWaiting()">
   </i>

@@ -12,19 +12,17 @@
 	var vm = this;
 	
 	vm.logout = logout;
-	vm.subheader_base = ' ';
 
 
 	$scope.$on('subheader', function(event, subtitle) {
 	    vm.subheader = ' | ' + subtitle;
-	    vm.subheader_base = vm.subheader;
 	});
 
-	$scope.$on('subheader.toggle', function(event, show_all) {
-	    if(show_all) {
-		vm.subheader = vm.subheader_base;
+	$scope.$on('subheader.toggle', function(event, content) {
+	    if(content) {
+		vm.subheader = vm.subheader + ' | ' + content;
 	    } else {
-		vm.subheader = vm.subheader_base + ' | My assigned app';
+		vm.subheader = vm.subheader.slice(0, vm.subheader.lastIndexOf('|') - 1);
 	    }
 	});
 

@@ -7,12 +7,13 @@
 
     AppListController.$inject = [
 	'$scope', '$routeParams', '$location', 'ngDialog', 'TestResults', 'Snackbar',
-	'$rootScope'
+	'$rootScope', '$timeout', 'Excel'
     ];
 
 
     function AppListController(
-	$scope, $routeParams, $location, ngDialog, TestResults, Snackbar, $rootScope) {
+	$scope, $routeParams, $location, ngDialog, TestResults, Snackbar, $rootScope,
+	$timeout, Excel) {
 	var vm = this;
 
 	vm.url = $location.url();
@@ -21,9 +22,13 @@
 	vm.searchTextChange = searchTextChange;
 	vm.selectedItemChange = selectedItemChange;
 	vm.toggleAssigned = toggleAssigned;
+	vm.toggleReport = toggleReport;
 	vm.sendComments = sendComments;
 	vm.updateStatus = updateStatus;
+	vm.exportToExcel = exportToExcel;
 	vm.show_all = false;
+	vm.show_report = false;
+	vm.tableId = '#view_table'
 
 	vm.statusType = {
 	    'C':'Completed with No Issue',
@@ -55,6 +60,21 @@
 	    console.log('apps loaded');
 	});
 
+	$scope.$on('test-phases.loaded', function(event, test_phases) {
+	    vm.test_phases = test_phases;
+	    console.log('test phases loaded');
+	});
+
+	function exportToExcel(sheetName){ // ex: '#my-table'	    
+            var exportHref=Excel.tableToExcel(vm.tableId, sheetName);
+	    $timeout(function() {
+		var link = document.createElement('a');
+		link.download = sheetName.concat(".xls");
+		link.href = exportHref;
+		link.click();
+	    }, 100);
+        };
+
 	function updateStatus(status) {
 	    var test_result = $scope.apps_assigned.current;
 	    var test_phase = test_result.testPhase;
@@ -77,15 +97,29 @@
 
 	function toggleAssigned() {
 	    if(vm.show_all) {
-		$scope.btn = 'See my assigned Apps'
+		$scope.assigned_btn = 'See my assigned Apps';
 		$scope.apps = vm.appsAll;
-		$rootScope.$broadcast('subheader.toggle', true);
+		$rootScope.$broadcast('subheader.toggle', null);
 	    } else {
-		$scope.btn = 'See all Apps'
+		$scope.assigned_btn = 'See all Apps';
 		$scope.apps = vm.apps_assigned;
-		$rootScope.$broadcast('subheader.toggle', false);
+		$rootScope.$broadcast('subheader.toggle', 'My assigned app');
+
 	    }
 	    vm.show_all = !vm.show_all;
+	}
+
+	function toggleReport() {
+	    if(vm.show_report) {
+		$scope.report_btn = 'Report view';
+		vm.tableId = '#view_table'
+		$rootScope.$broadcast('subheader.toggle', null);
+	    } else {
+		$scope.report_btn = 'Current view';
+		vm.tableId = '#report_table'
+		$rootScope.$broadcast('subheader.toggle', 'Report view');
+	    }
+	    vm.show_report = !vm.show_report;
 	}
 	
 	function scopeToggle(app) {

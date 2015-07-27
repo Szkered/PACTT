@@ -149,6 +149,11 @@
 .timeline-badge.waiting {
     background-color: #212121 !important;
 }
+.timeline-badge > div > div.current {
+    color: black;
+    transform: translate(0px, -50px);
+    font-size:70%;
+}
 .timeline-title {
     margin-top: 0;
     color: inherit;

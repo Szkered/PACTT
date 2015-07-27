@@ -1,14 +1,22 @@
 <!-- tool bar -->
-<div class="navbar toolbar navbar-default" ng-if="execMode">
+<div class="navbar toolbar navbar-default">
   <div class="navbar-collapse collapse navbar-responsive-collapse">
 
     <!-- action buttons -->
     <ul class="nav navbar-nav">
-      <li>
+      <li ng-if="execMode">
 	<a href="javascript:void(0)" ng-click="vm.toggleAssigned()">
 	  <div class="mdi-navigation-menu"></div>
 	  <md-tooltip>
-	    {{ btn }}
+	    {{ assigned_btn }}
+	  </md-tooltip>
+	</a>
+      </li>
+      <li>
+	<a href="javascript:void(0)" ng-click="vm.toggleReport()">
+	  <div class="mdi-action-description"></div>
+	  <md-tooltip>
+	    {{ report_btn }}
 	  </md-tooltip>
 	</a>
       </li>
@@ -17,6 +25,14 @@
     <!-- finish phase -->
     <ul class="nav navbar-nav navbar-right">
       <li>
+	<a href="javascript:void(0)" ng-click="vm.exportToExcel('app_status')">
+	  <div class="mdi-action-get-app"></div>
+	  <md-tooltip>
+	    Download as excel
+	  </md-tooltip>
+	</a>
+      </li>
+      <li ng-if="execMode">
 	<a href="javascript:void(0)" ng-click="vm.sendComments()">
 	  <div class="mdi-editor-mode-comment"></div>
 	  <md-tooltip>
@@ -24,7 +40,7 @@
 	  </md-tooltip>
 	</a>
       </li>
-      <li class="dropdown">
+      <li class="dropdown" ng-if="execMode">
         <a href="javascript:void(0)"
 		data-target="#"
 		class="dropdown-toggle"
@@ -72,7 +88,9 @@
 
 <div class="panel">
   <!-- table - view mode -->
-  <table class="table table-striped table-hover exec" ng-if="!editMode">
+  <table class="table table-striped table-hover exec"
+	  id="view_table"
+	  ng-if="!editMode && !vm.show_report">
     <thead>
       <tr>
         <th>AID</th>
@@ -97,7 +115,40 @@
       </tr>
     </tbody>
   </table>
-
+  
+  <!-- table - report view  -->
+  <table class="table table-striped table-hover report"
+	  id="report_table"
+	  ng-if="vm.show_report">
+    <thead>
+      <tr>
+        <th>AID</th>
+        <th>Name</th>
+        <th>RTO</th>
+        <th>Priority</th>
+        <th ng-repeat="test_phase in vm.test_phases">
+	  {{ test_phase.description }}
+	</th>
+	<th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="app in apps">
+        <td>{{ app.aid }}</td>
+        <td>{{ app.name }}</td>
+        <td>{{ app.RTO }}</td>
+        <td>{{ app.priority }}</td>
+	<td ng-repeat="test_results in app.test_results"
+		ng-class="test_results.status">
+	  {{ vm.statusType[test_results.status] }}
+	</td>
+	<td>{{ app.current.comment }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
   <!-- table - edit mode -->
   <table class="table table-striped table-hover" ng-if="editMode">
     <thead>

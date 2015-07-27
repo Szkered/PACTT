@@ -18,21 +18,27 @@
 	    vm.lob = Authentication.getAuthenticatedAccount().lob;
 	}
 
-
-	if(new Date() < new Date($scope.event.date)) {
+	var event_date = new Date($scope.event.date),
+	    now = new Date();
+	
+	if(now < event_date) {
 	    $scope.url = 'planner';
 	    vm.button = 'Plan';
 	    vm.btn = 'btn-primary';
-	} else {
+	} else if(now.toDateString() === event_date.toDateString()) {
 	    if(vm.lob === 'P') {
 		$scope.url = 'executor';
 		vm.button = 'Check-in';
-		vm.btn = 'btn-success'	
+		vm.btn = 'btn-success';
 	    } else {
 		$scope.url = 'tracker'
 		vm.button = 'Track';
 		vm.btn = 'btn-success';
 	    }
+	} else {
+	    $scope.url = 'tracker';
+	    vm.button = 'Review';
+	    vm.btn = 'btn-primary';
 	}
 	
 	function redirect() {
