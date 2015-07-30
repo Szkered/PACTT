@@ -64,7 +64,7 @@
 	    
 	    // hard-coded data for demo
 	    var date = new Date().toDateString();
-	    var now = new Date(date + ' 5:01')
+	    var now = new Date(date + ' 10:01')
 
 	    var st = test_phase.startTime;
 	    var et = test_phase.endTime;

@@ -1,33 +1,22 @@
-table.exec > tbody > tr.C {
+table.exec > tbody > tr.C,
+table.report > tbody > tr > td.C,
+table.report > tbody > tr > td.C > small
+{
     background-color: #4CAF50 !important;
     color: white;
     font-weight: bold;
 }
 
-table.exec > tbody > tr.I {
+table.exec > tbody > tr.I,
+table.report > tbody > tr > td.I ,
+table.report > tbody > tr > td.I > small {
     background-color: #FF9800 !important;
     color: white;
     font-weight: bold;
 }
-table.exec > tbody > tr.F {
-    background-color: #F44336 !important;
-    color: white;
-    font-weight: bold;
-}
-
-table.report > tbody > tr > td.C {
-    background-color: #4CAF50 !important;
-    color: white;
-    font-weight: bold;
-}
-
-table.report > tbody > tr > td.I {
-    background-color: #FF9800 !important;
-    color: white;
-    font-weight: bold;
-}
-
-table.report > tbody > tr > td.F {
+table.exec > tbody > tr.F,
+table.report > tbody > tr > td.F,
+table.report > tbody > tr > td.F > small {
     background-color: #F44336 !important;
     color: white;
     font-weight: bold;

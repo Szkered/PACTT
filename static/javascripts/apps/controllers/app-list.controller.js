@@ -77,14 +77,21 @@
 
 	function updateStatus(status) {
 	    var test_result = $scope.apps_assigned.current;
-	    var test_phase = test_result.testPhase;
-	    test_result.testPhase = test_phase.id;
-	    test_result.status = status;
-	    TestResults.update(test_result).then(function(data) {
-		Snackbar.show('Status updated!');
-		test_result.testPhase = test_phase;
-	    }, errorFn);
-	    $rootScope.$broadcast('status.updated', status);
+	    if(test_result.status == 'N') {
+		var test_phase = test_result.testPhase;
+		test_result.testPhase = test_phase.id;
+		test_result.status = status;
+		var now = new Date();
+		var now_time = now.getHours() + ':' + now.getMinutes();
+		test_result.endTime = now_time;
+		TestResults.update(test_result).then(function(data) {
+		    Snackbar.show('Status updated!');
+		    test_result.testPhase = test_phase;
+		}, errorFn);
+		$rootScope.$broadcast('status.updated', status);
+	    } else {
+		Snackbar.error('You have finished this phase!');
+	    }
 	}
 
 	function sendComments() {

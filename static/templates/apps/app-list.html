@@ -12,7 +12,7 @@
 	  </md-tooltip>
 	</a>
       </li>
-      <li>
+      <li ng-if="!editMode">
 	<a href="javascript:void(0)" ng-click="vm.toggleReport()">
 	  <div class="mdi-action-description"></div>
 	  <md-tooltip>
@@ -138,9 +138,13 @@
         <td>{{ app.name }}</td>
         <td>{{ app.RTO }}</td>
         <td>{{ app.priority }}</td>
-	<td ng-repeat="test_results in app.test_results"
-		ng-class="test_results.status">
-	  {{ vm.statusType[test_results.status] }}
+	<td ng-repeat="test_result in app.test_results"
+		ng-class="test_result.status">
+	  {{ vm.statusType[test_result.status] }} <br>
+	  <small class="text-muted" ng-if="test_result.status !== 'N'">
+	    <i class="glyphicon glyphicon-time"></i>
+	    Finished at {{ test_result.endTime }}
+	  </small>
 	</td>
 	<td>{{ app.current.comment }}</td>
       </tr>

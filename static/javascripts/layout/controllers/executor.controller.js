@@ -73,7 +73,7 @@
 	    	    return test_result.app == vm.appsAll[i].id;
 	    	});
 		
-		vm.appsAll[i].current = getCurrentTestResult(vm.appsAll[i].test_results);
+		vm.appsAll[i].current = getCurrentTestResult(vm.appsAll[i].test_results, '08:30');
 	    }
 	    
 	    vm.appsAll = vm.appsAll.filter(function(app) {
@@ -109,8 +109,8 @@
 	    Snackbar.error(data.data.error);
 	}
 	
-	function getCurrentTestResult(test_results) {
-	    // time based logic
+	function getCurrentTestResult(test_results, time) {
+	    // mixed logic
 	    test_results = test_results.filter(function(test_result) {
 	    	var date = vm.event.date
 	    	var st = test_result.testPhase.startTime;
@@ -119,16 +119,12 @@
 	    	et = new Date(date + ' ' + et );
 
 	    	// harcoded
-	    	// var now = new Date();
-	    	var now = new Date(date + ' 5:00')
+	    	var now = new Date(date + ' ' + time),
+		    is_current = st <= now && now <= et,
+		    not_finished = test_result.status == 'N';
 
-	    	return st <= now && now <= et;
+	    	return is_current || not_finished;
 	    });
-
-	    // status based logic
-	    // test_results = test_results.filter(function(test_result){
-	    // 	return test_result.status == 'N';
-	    // });
 
 	    return test_results[0];
 	}
